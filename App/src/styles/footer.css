@@ -1,0 +1,16 @@
+.mainFooter {
+    height: 13vw;
+    background-color: #24073a;
+    color: aliceblue;
+    display: flex;
+}
+
+.footerTexts {
+    display: flex;
+    flex-direction: row;
+}
+
+.footerLinks {
+    display: flex;
+    flex-direction: column;
+}

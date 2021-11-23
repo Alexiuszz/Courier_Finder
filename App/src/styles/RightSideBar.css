@@ -1,0 +1,49 @@
+.sideBar {
+    width: 21vw;
+    float: right;
+    border: 1px #817a7a7c solid;
+    border-top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.2vw 0;
+    border-radius: 5px 0 0 5px;
+    box-shadow: 0 0.2vw 0.5vw 0 #00000033;
+}
+
+.sideBar h3 {
+    margin: 0;
+    font-size: 1.5vw;
+}
+
+.selectInput {
+    margin: 2.2vw 0;
+}
+
+.iconButton1 {
+    margin-bottom: 2.2vw;
+    justify-content: center;
+}
+
+.mapIconBtn {
+    background-image: url('../graphics/Button_BG.png');
+    background-size: cover;
+    color: #fff;
+    margin-top: 1.5vw;
+}
+
+.mapIconBtn:hover {
+    background-image: url('../graphics/HoverButtonBG.png');
+    color: #fff;
+    font-weight: 500;
+}
+
+.mapIconBtn img {
+    margin-left: 0.75vw;
+}
+
+.footText {
+    width: 12vw;
+    font-size: 0.8vw;
+    text-align: center;
+}

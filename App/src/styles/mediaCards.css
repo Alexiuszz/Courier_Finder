@@ -1,0 +1,61 @@
+.mediaCard {
+    height: 25vw;
+    width: 17vw;
+    background-color: #ffff;
+    box-shadow: 0 0.5vw 0.5vw 0 #00000033;
+}
+
+.mediaImg {
+    overflow: hidden;
+    height: 60%;
+    text-align: center;
+    padding-top: 2vw;
+    box-sizing: border-box;
+}
+
+.mediaTitle {
+    font-family: 'Roboto', 'Playfar Display';
+    font-weight: 900;
+    margin: 0;
+    color: #513486;
+    font-size: 1.5vw;
+    text-align: center;
+}
+
+.mediaContent {
+    font-family: 'Roboto', 'Playfar Display';
+    font-size: 0.8vw;
+    width: 14vw;
+    margin-left: 1.5vw;
+    margin-right: 0.5vw;
+    margin-top: 1.5vw;
+    height: 3vw;
+}
+
+.mediaImg img {
+    height: 90%;
+}
+
+.mediaCards {
+    width: 60vw;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 7vw;
+}
+
+.mediaAction {
+    float: right;
+    border: none;
+    width: auto;
+    margin-right: 1vw;
+    color: #4d1471c7;
+    box-shadow: none;
+}
+
+.cardContainer {
+    background-image: url('../graphics/CardsBG.png');
+    height: 35vw;
+    display: flex;
+    align-items: center;
+}

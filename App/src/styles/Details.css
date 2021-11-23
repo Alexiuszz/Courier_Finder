@@ -1,0 +1,29 @@
+.detailsContainer {
+    margin-top: 3vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 6.5vw;
+    padding-right: 6vw;
+    justify-content: space-between;
+}
+
+.detailsImg {
+    height: 23vw;
+}
+
+.detailsHead {
+    font-family: 'Playfar Display';
+    font-weight: 900;
+    line-height: 5vw;
+    margin-bottom: 0;
+    color: #3c1f6b;
+    font-size: 3vw;
+}
+
+.detailsSubTxt {
+    width: 35vw;
+    font-size: 1vw;
+    color: #180558a6;
+    margin-top: 1.4vw;
+}

@@ -1,0 +1,55 @@
+.homeInfo {
+    width: 95%;
+    margin-left: 30px;
+    margin-top: 14vh;
+    background-image: url('../graphics/Body\ Design1.png');
+    background-size: cover;
+    height: 43vw;
+    padding-top: 3vw;
+    padding-left: 5vw;
+    box-sizing: border-box;
+}
+
+.banner {
+    font-size: 4vw;
+    width: 8vw;
+    font-family: 'Playfar Display';
+    font-weight: 900;
+    line-height: 5vw;
+    margin-bottom: 0;
+    color: #3c1f6b;
+}
+
+.details {
+    font-size: 1vw;
+    width: 28vw;
+    color: #00000086;
+    margin-top: 4vw;
+}
+
+.register:hover {
+    background-image: url('../graphics/HoverButtonBG.png');
+}
+
+.register {
+    background-image: url('../graphics/Button_BG.png');
+    background-size: cover;
+    color: #fff;
+    justify-content: center;
+    margin-right: 50px;
+}
+
+.learn {
+    background-image: url('../graphics/ButtonBg2WithRightArrow.png');
+    background-size: cover;
+    padding-left: 0.5vw;
+}
+
+.learn:hover {
+    background-image: url('../graphics/BtnBGwithArrowHover.png');
+}
+
+.infoBtns {
+    display: flex;
+    margin-top: 4vw;
+}
