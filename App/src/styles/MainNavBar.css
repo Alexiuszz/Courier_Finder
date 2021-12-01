@@ -1,19 +1,25 @@
 .navContainer {
-    display: grid;
-    grid-template-columns: 0.5fr 3fr 1.5fr;
-    height: 10.6vw;
-    align-items: center;
+    height: 148px;
     background: linear-gradient(135deg, #fff, #ffffff, #eedffac4);
 }
 
-.navContainer div {
+.navItems {
+    display: grid;
+    grid-template-columns: 0.5fr 3fr 1.5fr;
+    align-items: center;
+    height: 100%;
+    max-width: 1364px;
+    margin: 0 auto;
+}
+
+.navLinkList {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
 .navIcon {
-    font-size: 2vw;
+    font-size: 20px;
 }
 
 .navContainer a:hover {
@@ -28,10 +34,10 @@
     text-decoration: none;
     color: #26003B;
     font-weight: 500;
-    letter-spacing: 0.7px;
+    letter-spacing: 1px;
     z-index: 2;
     padding: 3px 8px;
-    font-size: 1.2vw;
+    font-size: 17px;
 }
 
 .group1 a {
@@ -42,6 +48,6 @@
     position: absolute;
     top: 0;
     left: 45%;
-    width: 40%;
+    width: 550px;
     z-index: 1;
 }

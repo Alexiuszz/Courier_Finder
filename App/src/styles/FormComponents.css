@@ -1,34 +1,39 @@
 .selectInput {
-    width: 18vw;
-    height: 2vw;
+    width: 250px;
+    height: 35px;
     background-color: #ffffff00;
-    padding: 0.3vw 0.6vw;
+    padding: 5px 10px;
     border: 1px #817a7a7c solid;
     font-family: 'Helvetica Neue', 'Roboto';
     font-weight: 500;
-    font-size: 1vw;
+    font-size: 14px;
     color: #28023fec;
-    border-radius: 0.3vw;
+    border-radius: 5px;
 }
 
 .iconButton {
     font-family: 'Roboto', 'Helvetica nue';
-    width: 8.3vw;
-    height: 2.2vw;
+    width: 130px;
+    height: 35px;
     border: 1px #817a7a41 solid;
-    border-radius: 0.5vw;
+    border-radius: 5px;
     align-items: center;
     background-color: #ffffff00;
     display: flex;
     font-weight: 500;
-    font-size: 1vw;
+    font-size: 14px;
     letter-spacing: 0.7px;
-    box-shadow: 0 0.05vw 0.4vw 0 #00000033;
+    box-shadow: 0 2px 8px 0 #00000033;
 }
 
 .iconButton:hover {
     background-color: #817a7a21;
     cursor: pointer;
+}
+
+.iconButton .icon {
+    height: 16px;
+    padding-right: 5px;
 }
 
 .divider {
@@ -38,6 +43,84 @@
     margin-bottom: 2px;
 }
 
-.icon {
-    height: 1.5vw;
+.inputWButton {
+    display: flex;
+}
+
+.inputWLabel {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 200px;
+    height: 40px;
+}
+
+.inputWLabel input {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px #3f3f3f60 solid;
+    padding-left: 20px;
+    border-radius: 5px 5px 0px 0;
+}
+
+.inputWButton button {
+    width: 100px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.inputWLabel label {
+    position: absolute;
+    transform: translate(40%, 50%) scale(1);
+    transform-origin: top left;
+    transition: all 0.2s ease-out;
+}
+
+.inputWLabel:focus-within label {
+    transform: translate(0, -20px) scale(0.8);
+    color: #5e5d5d;
+}
+
+.inputWLabel .Active {
+    transform: translate(0, -20px) scale(0.8);
+    color: #5e5d5d;
+}
+
+.inputWLabel input:focus-visible {
+    outline: 0;
+}
+
+.focusBorder {
+    position: absolute;
+    background-color: #4e52b4;
+    transform: translate(0px, 34px) scale(1);
+    transform-origin: bottom left;
+    height: 2px;
+    width: 0;
+}
+
+.inputWLabel:focus-within .focusBorder {
+    animation: border 0.3s ease-out 0s 1 alternate forwards;
+}
+
+@keyframes border {
+    50% {
+        width: 50%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+.inputWLabel .passInput {
+    display: flex;
+    height: 100%;
+}
+
+.passInput .passIcon {
+    position: absolute;
+    transform: translate(1000%, 40%);
+    height: 30px;
+    width: 30px;
 }

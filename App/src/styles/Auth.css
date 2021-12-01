@@ -1,0 +1,64 @@
+.authForm {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 10px 20px 0 #00000033;
+    padding-top: 50px;
+    box-sizing: border-box;
+    align-items: center;
+    font-family: "Roboto";
+}
+
+.loginForm .authHeader {
+    font-family: Roboto;
+    color: #273976;
+    font-size: 48px;
+    font-weight: 500;
+}
+
+.loginForm .loginEmail {
+    margin-bottom: 60px;
+}
+
+.loginInput,
+.authButton {
+    width: 60%;
+    box-shadow: 0 1px 7px 0 #00000033;
+    height: 53px;
+}
+
+.loginPass label {
+    transform: translate(30%, 80%) scale(1);
+}
+
+.loginEmail label {
+    transform: translate(40%, 70%) scale(1);
+}
+
+.loginInput .focusBorder {
+    transform: translate(0px, 52px) scale(1);
+}
+
+.authButton {
+    justify-content: center;
+    box-sizing: border-box;
+    background-image: url('../graphics/btnBGLong.png');
+    background-size: cover;
+    color: #fff;
+    font-size: 16px;
+}
+
+.authButton:hover {
+    background-image: url('../graphics/btnBGLongHover.png');
+}
+
+.keepSignedin,
+.loginLink {
+    width: 60%;
+    margin: 20px 0;
+}
+
+.loginLink p {
+    margin: 0;
+}

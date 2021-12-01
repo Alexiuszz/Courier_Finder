@@ -1,15 +1,15 @@
 .mediaCard {
-    height: 25vw;
-    width: 17vw;
+    height: 350px;
+    width: 234px;
     background-color: #ffff;
-    box-shadow: 0 0.5vw 0.5vw 0 #00000033;
+    box-shadow: 0 8px 8px 0 #00000033;
 }
 
 .mediaImg {
     overflow: hidden;
     height: 60%;
     text-align: center;
-    padding-top: 2vw;
+    padding-top: 28px;
     box-sizing: border-box;
 }
 
@@ -18,18 +18,18 @@
     font-weight: 900;
     margin: 0;
     color: #513486;
-    font-size: 1.5vw;
+    font-size: 24px;
     text-align: center;
 }
 
 .mediaContent {
     font-family: 'Roboto', 'Playfar Display';
-    font-size: 0.8vw;
-    width: 14vw;
-    margin-left: 1.5vw;
-    margin-right: 0.5vw;
-    margin-top: 1.5vw;
-    height: 3vw;
+    font-size: 12px;
+    width: 192px;
+    margin-left: 21px;
+    margin-right: 7px;
+    margin-top: 20px;
+    height: 40px;
 }
 
 .mediaImg img {
@@ -37,25 +37,25 @@
 }
 
 .mediaCards {
-    width: 60vw;
+    width: 826px;
     display: flex;
     justify-content: space-between;
     margin: auto;
-    margin-top: 7vw;
+    margin-top: 96px;
 }
 
 .mediaAction {
     float: right;
     border: none;
     width: auto;
-    margin-right: 1vw;
+    margin-right: 14px;
     color: #4d1471c7;
     box-shadow: none;
 }
 
 .cardContainer {
     background-image: url('../graphics/CardsBG.png');
-    height: 35vw;
+    height: 481px;
     display: flex;
     align-items: center;
 }

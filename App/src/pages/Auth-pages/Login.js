@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import { useAuth } from '../../auth_setup/use-auth.js';
-
-import UserLogin from '../../Components/form_components/Courier-merchant-signin';
-import { Link } from 'react-router-dom';
+import UserLogin from '../../Components/form_components/LoginForm';
 
 
 function Login() {
-    const [user, setUser] = useState({
+    const [user, setUser] = useReducer((user, update) => ({ ...user, ...update }), {
         email: '',
         password: '',
-        keepSignedin: false,
-        showPassword: false,
-    });
+        keepSignedin: false
+    })
+    
 
     const [emptyField, setEmptyField] = useState(false);
 
@@ -28,28 +26,12 @@ function Login() {
         auth.login(user);
     }
 
-    const handleClickShowPassword = (e) => {
-        const { name, value } = e.target;
-        setUser({
-            ...user,
-            [name]: value,
-            showPassword: !user.showPassword
-        })
-    };
-
-    const handleMouseDownPassword = (e) => {
-        e.preventDefault();
-    };
-
-    const handleChange = (e) => {
-        const { name, value, checked, type } = e.target;
+    const handleChange = ({ name, value, checked, type }) => {
         type === "checkbox" ?
             setUser({
-                ...user,
                 [name]: checked
             }) :
             setUser({
-                ...user,
                 [name]: value
             })
     }
@@ -62,11 +44,8 @@ function Login() {
                 reqEmailError={reqEmailError}
                 emptyField={emptyField}
                 reqPasswordError={reqPasswordError}
-                LinkRouter={Link}
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
-                handleClickShowPassword={handleClickShowPassword}
-                handleMouseDownPassword={handleMouseDownPassword}
             />
         </div>
 

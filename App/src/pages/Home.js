@@ -10,12 +10,17 @@ import '../styles/home.css';
 function Home() {
 
     return (
-        <div className='home'>
+        <div className="homeContainer">            
             <MainNavbar />
-            <RightBar />
-            <Info />
-            <Details />
-            <MediaCards />
+            <div className="home">                
+                <RightBar />
+                <div className='homeContent'>
+                    <Info />
+                    <Details />
+                    <MediaCards />
+                </div>
+                
+            </div> 
             <Footer />
         </div>
 

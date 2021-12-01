@@ -33,6 +33,23 @@ function useProvideAuth() {
 
         setToken(newToken);
     }
+
+    const signup = userData => axios({
+        url: `auth/new-${user.account}`,
+        method: 'post',
+        data: user
+    })
+        .then(function (response) {
+            console.log(response.data);
+            !response.data ?
+                alert("email already exists") :
+                window.location.href = "http://localhost:3000/login";
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
+
     const login = (userData) => {
         console.log(userData);
         return axios({
@@ -65,29 +82,29 @@ function useProvideAuth() {
         axios.get('/signout');
     }
 
-    useEffect(() => {       
-            axios({
-                method: "GET",
-                url: "/getUser",
-            }).then((res) => {
-                if (res.data._id !== null && res.data._id !== undefined) {
-                    console.log(res.data);
-                    setUser(res.data);
-                    setIsLoaded(true);
-                    setUserToken(res.data._id + "@" + res.data.email, new Date(new Date().getTime() + 1000 * 60 * 60));
-                } else {
-                    setTokenExpirationTime(null);
-                    localStorage.removeItem('userData');
-                    setUser(null);
-                    setIsLoaded(false);
-                    setToken(null);
-                }
+    useEffect(() => {
+        axios({
+            method: "GET",
+            url: "/getUser",
+        }).then((res) => {
+            if (res.data._id !== null && res.data._id !== undefined) {
+                console.log(res.data);
+                setUser(res.data);
+                setIsLoaded(true);
+                setUserToken(res.data._id + "@" + res.data.email, new Date(new Date().getTime() + 1000 * 60 * 60));
+            } else {
+                setTokenExpirationTime(null);
+                localStorage.removeItem('userData');
+                setUser(null);
+                setIsLoaded(false);
+                setToken(null);
+            }
 
-            })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        
+        })
+            .catch(function (error) {
+                console.log(error);
+            });
+
     }, [])
 
 
@@ -96,7 +113,7 @@ function useProvideAuth() {
         const storedData = JSON.parse(localStorage.getItem('userData'));
         if (storedData && storedData.token && new Date(storedData.expirationTime) > new Date()) {
             setUserToken(storedData.token, new Date(storedData.expirationTime));
-        }        
+        }
     }, []);
 
     //new useEffect hook to set the timer if the expiration time is in future otherwise we clear the timer here
@@ -116,6 +133,7 @@ function useProvideAuth() {
     return {
         user,
         login,
+        signup,
         token,
         isLoaded,
         setUserToken,
