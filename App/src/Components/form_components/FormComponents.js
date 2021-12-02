@@ -8,17 +8,30 @@ export function TextInput({ placeHolder }) {
     )
 }
 
-export function SelectInput({ placeHolder, options, className = '', name = '' }) {
+export function SelectInput({ label = '', value, options = [], className = '', name = '', handleChange= f=>f}) {
+    const [active, setActive] = useState(false);
+
+    const onChange = (e) => {
+        let { value } = e.target;
+        handleChange(e.target);
+        if (value !== '') {
+            setActive(true);
+        }
+        else
+            setActive(false);
+    }
     return (
-        <>
-            <select name={name} className={`selectInput ${className}`} >
+        <div className={`inputWLabel ${className}`}>
+            <label className={active ? 'Active' : ''} htmlFor={'select'}>{label}</label>
+            <select name={name} id='select' className='selectInput' onChange={onChange}>
+            <option  value=''></option>
                 {
                     options.map((option, i) => (
                         <option key={i} value={option.toLowerCase()}>{option}</option>
                     ))
                 }
             </select>
-        </>
+        </div>
     )
 }
 
@@ -41,7 +54,7 @@ export function Input({ className = '', name = '', label = '', type = 'text', va
     }
     return (
         <div className={`inputWLabel ${className}`}>
-            <label className={active ? 'Active' : ''} htmlFor="text">{label}</label>
+            <label className={active ? 'Active' : ''} htmlFor={type}>{label}</label>
             <input type={type} value={value} onChange={onChange} name={name} />
             <div className="focusBorder"></div>
         </div>

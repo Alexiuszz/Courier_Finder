@@ -1,7 +1,6 @@
 import React, { useReducer, useState } from 'react';
 import { useAuth } from '../../auth_setup/use-auth.js';
 import UserSignup from '../../Components/form_components/SignupForm';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function SignUp() {
@@ -9,18 +8,18 @@ function SignUp() {
         name: '',
         email: '',
         password: '',
-        account: '',
+        state: '',
         cPassword: '',
-        terms: false,
-        showPassword: false,
-    })
+    });
+
+    const auth = useAuth(); 
 
     const [emptyField, setEmptyField] = useState(false);
 
     const reqNameError = user.name === "";
     const reqEmailError = user.email === "";
     const reqPasswordError = user.password === "";
-    const reqAccountError = user.account === "";
+    const reqStateError = user.state === "";
     const reqCPasswordError = user.cPassword === "";
     const passCheck = user.cPassword === user.password;
 
@@ -29,7 +28,7 @@ function SignUp() {
         e.preventDefault();
         if (
             user.name === "" ||
-            user.account === "" ||
+            user.state === "" ||
             user.password === "" ||
             user.cPassword === "" ||
             user.email === ""
@@ -39,21 +38,8 @@ function SignUp() {
         }
         if (!passCheck) {
             return;
-        }
-        axios({
-            url: `auth/new-${user.account}`,
-            method: 'post',
-            data: user
-        })
-            .then(function (response) {
-                console.log(response.data);
-                !response.data ?
-                    alert("email already exists") :
-                    window.location.href = "http://localhost:3000/login";
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        }     
+        auth.signup(user);
     }
 
     const handleChange = ({ name, value, checked, type }) => {
@@ -74,7 +60,7 @@ function SignUp() {
                 emptyField={emptyField}
                 reqEmailError={reqEmailError}
                 reqPasswordError={reqPasswordError}
-                reqAccountError={reqAccountError}
+                reqStateError={reqStateError}
                 reqCPasswordError={reqCPasswordError}
                 passCheck={passCheck}
                 handleChange={handleChange}

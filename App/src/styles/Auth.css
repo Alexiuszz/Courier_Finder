@@ -4,21 +4,22 @@
     max-width: 600px;
     margin: 20px auto;
     box-shadow: 0 10px 20px 0 #00000033;
-    padding-top: 50px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     box-sizing: border-box;
     align-items: center;
     font-family: "Roboto";
 }
 
-.loginForm .authHeader {
+.authHeader {
     font-family: Roboto;
     color: #273976;
     font-size: 48px;
     font-weight: 500;
 }
 
-.loginForm .loginEmail {
-    margin-bottom: 60px;
+.loginInput {
+    margin-bottom: 40px;
 }
 
 .loginInput,
@@ -28,12 +29,9 @@
     height: 53px;
 }
 
-.loginPass label {
-    transform: translate(30%, 80%) scale(1);
-}
-
-.loginEmail label {
-    transform: translate(40%, 70%) scale(1);
+.loginInput label {
+    transform: translate(15px, 15px) scale(1);
+    color: #0000008a
 }
 
 .loginInput .focusBorder {

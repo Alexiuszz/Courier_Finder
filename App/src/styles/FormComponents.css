@@ -55,7 +55,8 @@
     height: 40px;
 }
 
-.inputWLabel input {
+.inputWLabel input,
+.inputWLabel select {
     height: 100%;
     width: 100%;
     box-sizing: border-box;
@@ -79,15 +80,15 @@
 
 .inputWLabel:focus-within label {
     transform: translate(0, -20px) scale(0.8);
-    color: #5e5d5d;
+    color: #4e52b4;
 }
 
 .inputWLabel .Active {
     transform: translate(0, -20px) scale(0.8);
-    color: #5e5d5d;
 }
 
-.inputWLabel input:focus-visible {
+.inputWLabel input:focus-visible,
+.inputWLabel select:focus-visible {
     outline: 0;
 }
 
