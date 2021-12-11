@@ -24,6 +24,7 @@
     font-size: 14px;
     letter-spacing: 0.7px;
     box-shadow: 0 2px 8px 0 #00000033;
+    box-sizing: border-box;
 }
 
 .iconButton:hover {
@@ -76,15 +77,16 @@
     transform: translate(40%, 50%) scale(1);
     transform-origin: top left;
     transition: all 0.2s ease-out;
+    z-index: 1;
 }
 
 .inputWLabel:focus-within label {
-    transform: translate(0, -20px) scale(0.8);
+    transform: translate(0, -20px) scale(0.8) !important;
     color: #4e52b4;
 }
 
 .inputWLabel .Active {
-    transform: translate(0, -20px) scale(0.8);
+    transform: translate(0, -20px) scale(0.8) !important;
 }
 
 .inputWLabel input:focus-visible,
@@ -116,12 +118,15 @@
 
 .inputWLabel .passInput {
     display: flex;
+    position: relative;
     height: 100%;
+    width: 100%;
 }
 
 .passInput .passIcon {
     position: absolute;
-    transform: translate(1000%, 40%);
+    right: 10px;
+    top: 18%;
     height: 30px;
     width: 30px;
 }

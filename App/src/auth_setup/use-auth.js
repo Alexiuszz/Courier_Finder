@@ -35,15 +35,16 @@ function useProvideAuth() {
     }
 
     const signup = userData => axios({
-        url: `auth/new-${user.account}`,
+        // url: `auth/new-${user.account}`,
+        url: `/auth/new-courier`,
         method: 'post',
-        data: user
+        data: userData
     })
         .then(function (response) {
             console.log(response.data);
             !response.data ?
                 alert("email already exists") :
-                window.location.href = "http://localhost:3000/login";
+                window.location.href = "http://localhost:3002/auth/signin";
         })
         .catch(function (error) {
             console.log(error);
@@ -53,7 +54,7 @@ function useProvideAuth() {
     const login = (userData) => {
         console.log(userData);
         return axios({
-            url: 'auth/login',
+            url: '/auth/login',
             method: "post",
             data: userData
         })
@@ -111,10 +112,17 @@ function useProvideAuth() {
     //hook to check if something is there in localStorage and logs user in accordingly
     useEffect(() => {
         const storedData = JSON.parse(localStorage.getItem('userData'));
-        if (storedData && storedData.token && new Date(storedData.expirationTime) > new Date()) {
-            setUserToken(storedData.token, new Date(storedData.expirationTime));
+        if (user) {
+            if (storedData && storedData.token && new Date(storedData.expirationTime) > new Date()) {
+                setUserToken(storedData.token, new Date(storedData.expirationTime));
+            }
+        } else {
+            setTokenExpirationTime(null);
+            localStorage.removeItem('userData'); 
+            setIsLoaded(false);
+            setToken(null);
         }
-    }, []);
+    }, [user]);
 
     //new useEffect hook to set the timer if the expiration time is in future otherwise we clear the timer here
     useEffect(() => {
@@ -126,9 +134,6 @@ function useProvideAuth() {
             clearTimeout(logoutTimer);
         }
     });
-
-
-
 
     return {
         user,

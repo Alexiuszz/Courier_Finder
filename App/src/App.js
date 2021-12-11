@@ -6,7 +6,7 @@ import {
 import './styles/App.css';
 import Home from './pages/Home';
 import Login from './pages/Auth-pages/Login';
-import Signup from './pages/Auth-pages/Signup';
+import {Signup} from "./pages/Auth-pages/Signup";
 import UserAccount from './pages/UserAccount';
 import { ProvideAuth } from './auth_setup/use-auth';
 import PrivateRoute from './auth_setup/PrivateRoute';

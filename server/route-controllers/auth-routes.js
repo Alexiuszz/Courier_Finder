@@ -27,7 +27,8 @@ router.post('/new-courier', (req, res) => {
                                 new Courier({
                                     email: req.body.email,
                                     hash: hash,
-                                    companyName: req.body.companyName
+                                    name: req.body.name,
+                                    state: req.body.state,                                    
                                 }).save().then((newUser) => {
                                     res.send(newUser);
                                 })

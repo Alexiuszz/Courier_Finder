@@ -1,7 +1,10 @@
 import React, { useReducer, useState } from 'react';
 import { useAuth } from '../../auth_setup/use-auth.js';
 import UserLogin from '../../Components/form_components/LoginForm';
-
+import {
+    useLocation,
+    Navigate
+  } from 'react-router-dom';
 
 function Login() {
     const [user, setUser] = useReducer((user, update) => ({ ...user, ...update }), {
@@ -9,13 +12,14 @@ function Login() {
         password: '',
         keepSignedin: false
     })
-    
+
 
     const [emptyField, setEmptyField] = useState(false);
 
     const reqEmailError = user.email === "";
     const reqPasswordError = user.password === "";
     const auth = useAuth();
+    const errorTag = (mess = 'Required Field') => (<p className='errorTag'>{mess}</p>);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -36,16 +40,20 @@ function Login() {
             })
     }
 
+    let location = useLocation();
+    if (auth.token) {
+        return <Navigate to="/account" state={{ from: location }} />;
+      }
     return (
         <div>
             <UserLogin
                 user={user}
-                auth={auth}
                 reqEmailError={reqEmailError}
                 emptyField={emptyField}
                 reqPasswordError={reqPasswordError}
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
+                errorTag={errorTag}
             />
         </div>
 

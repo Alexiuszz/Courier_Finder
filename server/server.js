@@ -10,9 +10,9 @@ const app = express();
 
 app.set("port", process.env.PORT || 3003);
 
-// if (process.env.NODE_ENV === "production") {
-//     app.use(express.static("../App/build"));
-// }
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("../App/build"));
+}
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

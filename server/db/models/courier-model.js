@@ -3,7 +3,11 @@ const Schema = mongoose.Schema;
 
 //user schema for data object structure
 const courierSchema = new Schema({
-    companyName: {
+    name: {
+        type: String,
+        required: true,
+    },
+    state: {
         type: String,
         required: true,
     },

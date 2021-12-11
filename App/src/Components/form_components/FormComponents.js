@@ -35,8 +35,8 @@ export function SelectInput({ label = '', value, options = [], className = '', n
     )
 }
 
-export function IconButton({ icon = null, text = '', className = '', onClick = f => f }) {
-    return <button className={`iconButton ${className}`} onClick={() => onClick()}>{icon && (<img className='icon' src={icon} alt="icon" />)} {text && text}</button>
+export function IconButton({ icon = null, text = '', className = '', handleSubmit = f => f }) {
+    return <button className={`iconButton ${className}`} onClick={handleSubmit}>{icon && (<img className='icon' src={icon} alt="icon" />)} {text && text}</button>
 
 }
 
