@@ -37,7 +37,7 @@ export function Merchant() {
         if (!passCheck) {
             return;
         }
-        auth.signup(user);
+        auth.signup(user, 'merchant');
     };
 
     const handleChange = ({ name, value, checked, type }) => {
@@ -50,7 +50,7 @@ export function Merchant() {
             });
     };
     return (
-        <div>
+        <>
             <SignupForm
                 user={user}
                 reqNameError={reqNameError}
@@ -64,6 +64,6 @@ export function Merchant() {
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
                 form='merchant' />
-        </div>
+        </>
     );
 }

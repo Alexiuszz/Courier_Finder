@@ -56,9 +56,13 @@
 }
 
 .sub button {
-    background-color: #ebdffd;
-    color: black;
+    background-color: #6b5b9e;
+    color: #ffffff;
     height: 36px;
+}
+
+.sub button:hover {
+    background-color: #6b5b9e88;
 }
 
 .sub input {
