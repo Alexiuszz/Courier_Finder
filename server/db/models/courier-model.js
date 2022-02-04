@@ -7,8 +7,8 @@ const courierSchema = new Schema({
         type: String,
         required: true,
     },
-    state: {
-        type: String,
+    phoneNo: {
+        type: Number,
         required: true,
     },
     hash: {

@@ -23,7 +23,7 @@ export function SelectInput({ label = '', value, options = [], className = '', n
     return (
         <div className={`inputWLabel ${className}`}>
             <label className={active ? 'Active' : ''} htmlFor={'select'}>{label}</label>
-            <select name={name} id='select' className='selectInput' onChange={onChange}>
+            <select name={name} className='selectInput' onChange={onChange}>
             <option  value=''></option>
                 {
                     options.map((option, i) => (

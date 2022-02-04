@@ -7,6 +7,10 @@ const merchantSchema = new Schema({
         type: String,
         required: true,
     },
+    phoneNo: {
+        type: Number,
+        required: true,
+    },
     hash: {
         type: String
     },

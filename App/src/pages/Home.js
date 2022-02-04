@@ -1,5 +1,4 @@
 import React from 'react';
-import MainNavbar from '../Components/Nav/MainNavbar';
 import RightBar from '../Components/layout_components/RightSidebar';
 import Info from '../Components/layout_components/Info';
 import MediaCards from '../Components/layout_components/MediaCards';
@@ -8,23 +7,19 @@ import Details from '../Components/layout_components/Details';
 import '../styles/home.css';
 
 function Home() {
-
     return (
-        <div className="homeContainer">            
-            <MainNavbar />
-            <div className="home">                
+        <div className="homeContainer" >
+            <div className="home">
                 <RightBar />
                 <div className='homeContent'>
                     <Info />
                     <Details />
                     <MediaCards />
                 </div>
-                
-            </div> 
+
+            </div>
             <Footer />
         </div>
-
-
     )
 }
 

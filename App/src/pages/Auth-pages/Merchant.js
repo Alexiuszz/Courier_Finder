@@ -63,7 +63,8 @@ export function Merchant() {
                 errorTag={errorTag}
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
-                form='merchant' />
+                form='merchant'
+            />
         </>
     );
 }

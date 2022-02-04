@@ -2,8 +2,16 @@
     max-width: 1364px;
 }
 
+.homeContainer a {
+    text-decoration: none;
+}
+
 .home {
     max-width: 1364px;
     margin: 0 auto;
     position: relative;
+}
+
+.homeContainer {
+    z-index: 1;
 }

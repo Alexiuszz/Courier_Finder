@@ -1,6 +1,7 @@
 import React from "react";
 import { IconButton } from "../form_components/FormComponents";
 import '../../styles/Info.css';
+import { Link } from "react-router-dom";
 
 export default function Info() {
     return (
@@ -16,7 +17,9 @@ export default function Info() {
                     minima sunt voluptatum ut consequatu
                 </p>
                 <div className="infoBtns">
-                    <IconButton className='register' text='Register' />
+                    <Link to='/auth/signup'>
+                        <IconButton className='register' text='Register' />
+                    </Link>
                     <IconButton className='learn' text='Learn more' />
                 </div>
             </div>

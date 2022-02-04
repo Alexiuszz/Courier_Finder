@@ -6,10 +6,10 @@ function LinkList({ items, className }) {
         <div className={className}>
             {
                 items.map(item => (
-                    <Link className='navLink' to={`/${item === 'Home'? '' : item.replace(/\s/g,'-').toLowerCase()}`} key={items.indexOf(item)}>{item}</Link>
-    ))
-}
-    </div >
+                    <Link className='navLink' to={`/${item === 'Home' ? '' : item.replace(/\s/g, '-').toLowerCase()}`} key={items.indexOf(item)}>{item}</Link>
+                ))
+            }
+        </div >
     )
 }
 

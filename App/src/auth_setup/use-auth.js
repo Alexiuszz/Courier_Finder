@@ -35,7 +35,7 @@ function useProvideAuth() {
     }
 
     const signup = (userData, account='courier') => axios({
-        url: `auth/new-${account}`,
+        url: `/auth/new-${account}`,
         method: 'post',
         data: userData
     })

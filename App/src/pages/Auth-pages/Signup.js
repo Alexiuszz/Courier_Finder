@@ -9,7 +9,7 @@ export function Signup(props) {
                 <h1>Welcome to the Courier Network</h1>
                 <p>Sign up as a Courier or a Merchant to get started</p>
             </div>
-            <div class="signup">
+            <div className="signup">
                 <Courier />
                 <div />
                 <Merchant />

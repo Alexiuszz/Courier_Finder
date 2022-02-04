@@ -7,7 +7,8 @@ export function Courier() {
         name: '',
         email: '',
         password: '',
-        state: '',
+        cAddress: '',
+        address: [],
         cPassword: '',
     });
 
@@ -19,7 +20,7 @@ export function Courier() {
     const reqNameError = user.name === "";
     const reqEmailError = user.email === "";
     const reqPasswordError = user.password === "";
-    const reqStateError = user.state === "";
+    const reqAddressError = user.address === [];
     const reqCPasswordError = user.cPassword === "";
     const passCheck = user.cPassword === user.password;
 
@@ -28,7 +29,7 @@ export function Courier() {
         e.preventDefault();
         if (
             user.name === "" ||
-            user.state === "" ||
+            user.address === [] ||
             user.password === "" ||
             user.cPassword === "" ||
             user.email === ""
@@ -59,7 +60,7 @@ export function Courier() {
                 emptyField={emptyField}
                 reqEmailError={reqEmailError}
                 reqPasswordError={reqPasswordError}
-                reqStateError={reqStateError}
+                reqAddressError={reqAddressError}
                 reqCPasswordError={reqCPasswordError}
                 passCheck={passCheck}
                 errorTag={errorTag}
