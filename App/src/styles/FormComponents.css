@@ -78,6 +78,7 @@
     transform: translate(40%, 30%) scale(1);
     transform-origin: top left;
     transition: all 0.2s ease-out;
+    pointer-events: none;
     z-index: 1;
 }
 

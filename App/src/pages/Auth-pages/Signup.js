@@ -11,8 +11,8 @@ export function Signup(props) {
             </div>
             <div className="signup">
                 <Courier />
-                <div />
-                <Merchant />
+                {/* <div />
+                <Merchant /> */}
             </div>
         </div>
     );

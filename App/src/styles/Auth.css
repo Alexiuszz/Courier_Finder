@@ -107,17 +107,15 @@
 }
 
 .signup {
-    display: grid;
-    grid-template-columns: 2fr 0.3fr 2fr;
-    column-gap: 30px;
     align-items: center;
     justify-items: center;
 }
 
 .signupForm {
-    width: 450px;
+    width: 650px;
     padding-top: 10px;
     padding-bottom: 30px;
+    margin: 0 auto;
 }
 
 .signupHeader {
@@ -129,12 +127,10 @@
 
 .signup .authButton {
     margin: 10px 0;
-    width: 70%;
 }
 
 .signup .authInput {
-    margin-bottom: 30px;
-    width: 70%;
+    margin-bottom: 40px;
 }
 
 .signup .loginInput label {
@@ -142,8 +138,12 @@
     color: #0000008a;
 }
 
-.signup .loginInput .focusBorder {
+.signup .focusBorder {
     transform: translate(0px, 40px) scale(1);
+}
+
+.address .focusBorder {
+    transform: translate(0px, 37px) scale(1);
 }
 
 .signup .loginInput,
@@ -151,8 +151,115 @@
     height: 40px;
 }
 
-.signup .loginLink {
-    width: 70%;
+.signup .loginLink,
+.signup .authButton,
+.signup .authInput,
+.addresses {
+    width: 55%;
+}
+
+.signup .address {
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px #3f3f3f60 solid;
+    border-radius: 5px 5px 0px 0;
+    background-color: #fff;
+}
+
+.signup .address input,
+.signup .address input:focus-within {
+    border: none;
+    outline: none;
+}
+
+.address .loginInput {
+    width: 100%;
+    height: 100%;
+    box-shadow: none;
+}
+
+.address .loginInput div:first-of-type {
+    width: 100%;
+    height: 100%;
+    box-shadow: none;
+}
+
+.address button {
+    background: none;
+    border: none;
+}
+
+.address button:hover {
+    box-shadow: 0 2px 2px 0 #00000033;
+    border-radius: 10px;
+    background-color: #fafafa;
+}
+
+.addressPicker {
+    display: flex;
+    align-items: center;
+}
+
+.addressPicker .addAddress {
+    margin-left: 20px;
+    height: 30px;
+    border-radius: 8px;
+    width: 30px;
+    box-shadow: 0 2px 5px 0 #0000005d;
+    border: 0;
+    padding: 4px 0 0 0;
+    background-color: #ffffff;
+}
+
+.addAddress:hover {
+    background-color: #fafafa;
+}
+
+.addressPicker .addAddress img {
+    width: 17px;
+}
+
+.addresses {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.addresses div {
+    display: flex;
+    width: 160px;
+    height: 20px;
+    font-size: 10px;
+    background-color: #273976;
+    box-shadow: 0 2px 2px 0 #00000033;
+    border-radius: 10px;
+    padding-left: 8px;
+    margin-bottom: 10px;
+}
+
+.addresses div p {
+    width: 80%;
+    margin: 0;
+    margin-top: 5px;
+    margin-right: 5px;
+    text-align: center;
+    overflow: hidden;
+    color: #ffff;
+}
+
+.dltAddress {
+    font-size: 16px;
+    color: #00d400;
+    border: none;
+    background: none;
+}
+
+.dltAddress:hover {
+    color: #ffff;
 }
 
 

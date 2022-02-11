@@ -11,7 +11,7 @@ import {
     ComboboxOption,
 } from "@reach/combobox";
 
-function MapSearch({ panTo }) {
+function MapSearch({ onAddressSelect, handleChange }) {
     const {
         ready,
         value,
@@ -32,7 +32,7 @@ function MapSearch({ panTo }) {
                 try {
                     const results = await getGeocode({ address });
                     const { lat, lng } = await getLatLng(results[0]);
-                    panTo({ lat, lng });
+                    onAddressSelect({ lat, lng, address });
                     setValue(address, false);
                     clearSuggestions();
 
@@ -45,9 +45,9 @@ function MapSearch({ panTo }) {
                 value={value}
                 onChange={(e) => {
                     setValue(e.target.value);
+                    handleChange(e.target.value);
                 }}
                 disabled={!ready}
-                placeHolder="Enter an Address"
             />
             <ComboboxPopover>
                 <ComboboxList>

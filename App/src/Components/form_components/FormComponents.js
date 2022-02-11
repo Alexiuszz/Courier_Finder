@@ -1,6 +1,7 @@
 import React, { useState, useReducer } from 'react';
 import visible from '../../Icons/View_hide.svg';
 import hide from '../../Icons/View.svg';
+import MapSearch from '../map_components/MapSearch';
 
 export function TextInput({ placeHolder }) {
     return (
@@ -8,7 +9,7 @@ export function TextInput({ placeHolder }) {
     )
 }
 
-export function SelectInput({ label = '', value, options = [], className = '', name = '', handleChange= f=>f}) {
+export function SelectInput({ label = '', value, options = [], className = '', name = '', handleChange = f => f }) {
     const [active, setActive] = useState(false);
 
     const onChange = (e) => {
@@ -24,7 +25,7 @@ export function SelectInput({ label = '', value, options = [], className = '', n
         <div className={`inputWLabel ${className}`}>
             <label className={active ? 'Active' : ''} htmlFor={'select'}>{label}</label>
             <select name={name} className='selectInput' onChange={onChange}>
-            <option  value=''></option>
+                <option value=''></option>
                 {
                     options.map((option, i) => (
                         <option key={i} value={option.toLowerCase()}>{option}</option>
@@ -108,7 +109,25 @@ export function InputwButton({ label = '', name = '', button = '', className = '
     )
 }
 
+export function AddressInput({ onAddressSelect = f => f, label, className, value }) {
+    const [active, setActive] = useState(false);
+    const onChange = (value) => {
+        if (value !== '') {
+            setActive(true);
+        }
+        else
+            setActive(false);
+    }
 
+    return (
+        <div className={`inputWLabel ${className}`}>
+            <label className={active ? 'Active' : ''}>{label}</label>
+            <MapSearch onAddressSelect={onAddressSelect} handleChange={onChange} />
+            <div className="focusBorder"></div>
+
+        </div>
+    )
+}
 
 export const Divider = () => <div className="divider"></div>
 

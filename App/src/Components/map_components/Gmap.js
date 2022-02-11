@@ -58,7 +58,7 @@ function Gmap() {
     const mapRef = React.useRef();
     const onMapLoad = React.useCallback((map) => {
         mapRef.current = map;
-    }, [])
+    }, []);
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries,
@@ -76,7 +76,7 @@ function Gmap() {
     return (
         <div className="mapContainer" >
             < div className="search" >
-                <MapSearch panTo={panTo} />
+                <MapSearch onAddressSelect={panTo} />
             </div>
             < div className="locate" >
                 <Locate panTo={panTo} />
