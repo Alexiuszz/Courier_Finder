@@ -36,8 +36,11 @@ export function SelectInput({ label = '', value, options = [], className = '', n
     )
 }
 
-export function IconButton({ icon = null, text = '', className = '', handleSubmit = f => f }) {
-    return <button className={`iconButton ${className}`} onClick={handleSubmit}>{icon && (<img className='icon' src={icon} alt="icon" />)} {text && text}</button>
+export function IconButton({ icon = null, text = '', className = '', handleSubmit = f => f, iconRight = false }) {
+    if (!iconRight)
+        return <button className={`iconButton ${className}`} onClick={handleSubmit}>{icon && (<img className='icon' src={icon} alt="icon" />)} {text && text}</button>
+    else
+        return <button className={`iconButton ${className}`} onClick={handleSubmit}>{text && text} {icon && (<img className='icon' src={icon} alt="icon" />)} </button>
 
 }
 
@@ -109,7 +112,7 @@ export function InputwButton({ label = '', name = '', button = '', className = '
     )
 }
 
-export function AddressInput({ onAddressSelect = f => f, label, className, value }) {
+export function AddressInput({ onAddressSelect = f => f, label, className, mark = null, changeMark = f => f }) {
     const [active, setActive] = useState(false);
     const onChange = (value) => {
         if (value !== '') {
@@ -122,7 +125,7 @@ export function AddressInput({ onAddressSelect = f => f, label, className, value
     return (
         <div className={`inputWLabel ${className}`}>
             <label className={active ? 'Active' : ''}>{label}</label>
-            <MapSearch onAddressSelect={onAddressSelect} handleChange={onChange} />
+            <MapSearch mark={mark} onAddressSelect={onAddressSelect} handleChange={onChange} changeMark={changeMark} />
             <div className="focusBorder"></div>
 
         </div>

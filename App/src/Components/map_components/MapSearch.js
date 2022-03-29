@@ -11,7 +11,10 @@ import {
     ComboboxOption,
 } from "@reach/combobox";
 
-function MapSearch({ onAddressSelect, handleChange }) {
+import "@reach/combobox/styles.css";
+
+
+function MapSearch({ onAddressSelect, handleChange, mark = null, changeMark=f=>f }) {
     const {
         ready,
         value,
@@ -25,6 +28,17 @@ function MapSearch({ onAddressSelect, handleChange }) {
         }
     });
 
+    const updateSearch = () => {
+        setValue(mark.address, false);
+        handleChange(mark.address);
+
+    }
+
+    React.useEffect(() => {
+        if (mark !== null && mark.address !== null) {
+            updateSearch();
+        }
+    }, [mark])
 
     return (
         <Combobox
@@ -34,6 +48,11 @@ function MapSearch({ onAddressSelect, handleChange }) {
                     const { lat, lng } = await getLatLng(results[0]);
                     onAddressSelect({ lat, lng, address });
                     setValue(address, false);
+                    changeMark({
+                        lat: lat,
+                        lng: lng,
+                        address: address
+                    });
                     clearSuggestions();
 
                 } catch (error) {

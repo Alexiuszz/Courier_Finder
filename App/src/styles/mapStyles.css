@@ -14,16 +14,21 @@
     z-index: 10;
 }
 
+.search .loginInput {
+    height: 45px;
+}
+
+.search .inputWLabel:focus-within .focusBorder {
+    transform: translate(0px, 43px) scale(1);
+}
+
 .search input {
     padding: 0.5rem;
-    font-size: 1.5rem;
     width: 100%;
+    height: 46px;
 }
 
 .locate button {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
     background: none;
     border: none;
     z-index: 10;
@@ -32,4 +37,8 @@
 .locate img {
     width: 30px;
     cursor: pointer;
+}
+
+[data-reach-combobox-popover] {
+    z-index: 2;
 }

@@ -1,0 +1,9 @@
+.mDialogButton {
+    margin-top: 2vh;
+    height: 5vh;
+    justify-content: center;
+}
+
+.mDialogButton img {
+    margin-left: 5px;
+}

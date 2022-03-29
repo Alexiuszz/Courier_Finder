@@ -5,10 +5,12 @@ import {
     Marker,
 } from "@react-google-maps/api";
 import mapStyles from "../../styles/mapStyles";
-import MapSearch from "./MapSearch";
+import Geocode from "react-geocode";
+
 import yourLocation from "../../Icons/YourLocation.svg";
 
 import '../../styles/mapStyles.css';
+import { AddressInput } from "../form_components/FormComponents";
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -44,18 +46,36 @@ function Locate({ panTo }) {
     )
 }
 
-function Gmap() {
-    const [location, setLocation] = React.useState({});
+function Gmap({
+    mapContainerStyle = {
+        width: '70vw',
+        height: '70vh'
+    },
+    mark, changeMark
+}
+) {
+
+    const mapRef = React.useRef();
+    Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
+
     const mapClick = React.useCallback(
-        event => {
-            setLocation({
-                lat: event.latLng.lat(),
-                lng: event.latLng.lng()
-            })
+        async event => {
+            // Get address from latitude & longitude.
+            Geocode.fromLatLng(event.latLng.lat().toString(), event.latLng.lng().toString()).then(
+                (response) => {
+                    changeMark({
+                        lat: event.latLng.lat(),
+                        lng: event.latLng.lng(),
+                        address: response.results[0].formatted_address
+                    })
+                },
+                (error) => {
+                    console.error(error);
+                }
+            );
         }, [],
     )
 
-    const mapRef = React.useRef();
     const onMapLoad = React.useCallback((map) => {
         mapRef.current = map;
     }, []);
@@ -75,10 +95,16 @@ function Gmap() {
 
     return (
         <div className="mapContainer" >
-            < div className="search" >
-                <MapSearch onAddressSelect={panTo} />
+            <div className="search" >
+                <AddressInput
+                    onAddressSelect={panTo}
+                    label='Select Dispatch Location'
+                    className='loginInput'
+                    mark={mark}
+                    changeMark={changeMark}
+                />
             </div>
-            < div className="locate" >
+            <div className="locate" >
                 <Locate panTo={panTo} />
             </div>
 
@@ -89,7 +115,7 @@ function Gmap() {
                 options={options}
                 onClick={mapClick}
                 onLoad={onMapLoad} >
-                <Marker position={{ lat: location.lat, lng: location.lng }} />
+                <Marker position={{ lat: mark.lat, lng: mark.lng }} />
             </GoogleMap>
         </div>
     )

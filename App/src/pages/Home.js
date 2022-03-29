@@ -10,7 +10,7 @@ function Home() {
     return (
         <div className="homeContainer" >
             <div className="home">
-                <RightBar />
+                {/* <RightBar /> */}
                 <div className='homeContent'>
                     <Info />
                     <Details />

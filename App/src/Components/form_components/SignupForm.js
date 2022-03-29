@@ -1,14 +1,13 @@
 import React from 'react';
 import {
-    GoogleMap,
     useLoadScript,
-    Marker,
 } from "@react-google-maps/api";
 
 import { AddressInput, IconButton, Input, Password } from './FormComponents'
 import { Link } from 'react-router-dom';
 import marker from '../../Icons/Spotlight Marker.svg';
 import plus from '../../Icons/plus.svg';
+import MapDialog from '../MapDialog';
 
 const libraries = ["places"];
 
@@ -18,7 +17,11 @@ function SignupForm(props) {
         libraries,
     });
 
-    
+    const [showDialog, setShowDialog] = React.useState(false);
+    const open = () => setShowDialog(true);
+    const close = () => setShowDialog(false);
+
+
     if (loadError) return "Error loading maps";
     if (!isLoaded) return "Loading Maps";
 
@@ -101,18 +104,19 @@ function SignupForm(props) {
                         <AddressInput
                             className='loginInput'
                             onAddressSelect={props.onAddressSelect}
-                            name='cAddress'
                             label='Select Dispatch Location'
                         />
-                    
-                        <button type='button' onClick={f => f}>
+
+                        <button type='button' onClick={open}>
                             <img src={marker} alt="Marker" />
                         </button>
                     </div>
                     <button
                         type='button'
                         className='addAddress'
-                        onClick={() => props.addAddress(props.user.cAddress)}
+                        onClick={() => {
+                            props.addAddress(props.user.cAddress);
+                        }}
                     >
                         <img src={plus} alt="Plus" />
                     </button>
@@ -120,6 +124,7 @@ function SignupForm(props) {
                 {!props.emptyField ? null : props.reqAddressError && props.errorTag()}
             </div>
 
+            <MapDialog addAddress={props.addAddress} showDialog={showDialog} close={close} onAddressSelect={props.onAddressSelect} cAddress={props.cAddress} />
 
             <div className={props.emptyField && props.reqPasswordError ? 'authInput inputError' : "authInput"}>
                 <Password

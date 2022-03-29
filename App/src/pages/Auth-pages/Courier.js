@@ -85,7 +85,7 @@ export function Courier() {
         })
     }
 
-    const onAddressSelect = ({lat, lng, address}) => {
+    const onAddressSelect = ({ lat, lng, address }) => {
         setUser({
             type: 'object',
             payload: {
@@ -95,12 +95,17 @@ export function Courier() {
             }
         })
     }
+    
     const addAddress = (newAddress) => {
-        if (newAddress === "")
+        if (newAddress.address === "" || newAddress.address === undefined)
             return
         setUser({ payload: newAddress, type: 'array' });
+        clearCurrent();
+    }
+    
+    function clearCurrent() {
         setUser({
-            type: 'cAddress',
+            type: 'object',
             payload: {
                 cAddress: {
                     lat: '',
@@ -108,12 +113,10 @@ export function Courier() {
                     address: ''
                 },
             }
-        })
+        });
     }
-
     const deleteAddress = (address) => {
         setUser({ payload: address, type: 'deleteItem' });
-
     }
 
     return (
@@ -134,8 +137,10 @@ export function Courier() {
                 addAddress={addAddress}
                 deleteAddress={deleteAddress}
                 handleSubmit={handleSubmit}
-                form='courier'
+                clearCurrent={clearCurrent}
             />
         </div>
     )
+
+
 }
