@@ -1,0 +1,127 @@
+.profileSetupWrapper {
+    width: 80%;
+    margin: 0 auto;
+    padding: 50px;
+    border: 3px solid #a19d9d8e;
+}
+
+.profileSetup {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.logo {
+    display: flex;
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    background-color: #c4c4c454;
+    box-shadow: 0 10px 10px 0 #00000033;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.logo .logoImg {
+    height: 215px;
+    /* width: 215px;
+    background-size: contain; */
+}
+
+.logoSelect .inputFile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputFile+label {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    justify-content: space-around;
+    width: 200px;
+    height: 25px;
+    border: 1px solid #d1d1d1;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 50px;
+}
+
+.inputFile:focus+label,
+.inputFile+label:hover {
+    background-color: #f1f1f1;
+}
+
+.inputFile+label img {
+    height: 20px;
+}
+
+.description {
+    font-size: 14px;
+    height: auto;
+    width: auto;
+    color: #0000004b;
+}
+
+.description label {
+    transform: translate(5%, 50%) scale(1);
+}
+
+.description .focusBorder {
+    transform: translate(0px, 278px) scale(1);
+}
+
+.description textarea {
+    padding: 20px;
+    resize: none;
+    outline: none;
+    border-radius: 9px 9px 0 0;
+    border: solid 2px #00000033;
+}
+
+.descriptionTxt .submitDescription {
+    position: absolute;
+    transform: translate(200px, -40px) scale(1);
+    font-size: 14px;
+    height: 30px;
+    width: 100px;
+    background-color: #6478BF;
+    color: #ffff;
+}
+
+.descriptionTxt .submitDescription:hover {
+    background-color: #8696cc;
+}
+
+.profileSetupWrapper .setupBtns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 80px;
+}
+
+.setupBtns .skipBtn {
+    background-color: #d1d1d1;
+}
+
+.setupBtns .skipBtn:hover {
+    background-color: #e7e7e7;
+}
+
+.setupBtns .continueBtn {
+    background-color: #66eb66;
+}
+
+.setupBtns .continueBtn:hover {
+    background-color: #91f191;
+}
+
+.setupBtns button {
+    display: flex;
+    justify-content: center;
+    color: #ffff;
+}

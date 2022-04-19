@@ -14,10 +14,23 @@ const courierSchema = new Schema({
     hash: {
         type: String
     },
+    locations: {
+        type: Array,
+        required: true,
+    },
     email: {
         type: String,
         required: true,
     },
+    inventory: {
+        type: Object
+    },
+    logo: {
+        type: Buffer,      
+    },
+    details: {
+        type: String
+    }
 }, { timestamps: true });
 
 const Courier = mongoose.model('courier', courierSchema);

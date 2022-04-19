@@ -27,7 +27,7 @@ function SignupForm(props) {
 
     return (
         <form className='authForm signupForm'>
-            <p className='signupHeader'>{props.form === 'courier' ? 'Courier' : 'Merchant'}</p>
+            <p className='signupHeader'>Courier</p>
             <div className={props.emptyField && props.reqEmailError ? 'authInput inputError' : "authInput"}>
                 <Input
                     className='loginInput'

@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const connectEnsureLogin = require('connect-ensure-login');
 const Merchant = require('../db/models/merchant-model');
 const Courier = require('../db/models/courier-model');
+const Location = require('../db/models/courier-locations');
 const cors = require('cors');
 
 router.get('/', (req, res) => {
@@ -23,15 +24,22 @@ router.post('/new-courier', (req, res) => {
                             const saltRounds = 5;
 
                             //Encrpyt password before saving
-                            bcrypt.hash(req.body.password, saltRounds).then(function(hash) {
+                            bcrypt.hash(req.body.password, saltRounds).then(function (hash) {
+                                new Location({
+                                    email: req.body.email,
+                                    locations: req.body.address,
+                                }).save();
+
                                 new Courier({
                                     email: req.body.email,
                                     hash: hash,
                                     name: req.body.name,
-                                    state: req.body.state,                                    
+                                    phoneNo: req.body.phone,
+                                    locations: req.body.address,
                                 }).save().then((newUser) => {
                                     res.send(newUser);
                                 })
+
                             });
                         }
 
@@ -56,7 +64,7 @@ router.post('/new-merchant', (req, res) => {
                             const saltRounds = 5;
 
                             //Encrpyt password before saving
-                            bcrypt.hash(req.body.password, saltRounds).then(function(hash) {
+                            bcrypt.hash(req.body.password, saltRounds).then(function (hash) {
                                 new Merchant({
                                     email: req.body.email,
                                     hash: hash,
@@ -75,14 +83,14 @@ router.post('/new-merchant', (req, res) => {
 });
 
 router.post("/login", passport.authenticate('local', { failureRedirect: '/' }),
-    function(req, res) {
+    function (req, res) {
         console.log(req.user);
         res.send(req.user);
     });
 
 router.get('/signout',
-    function(req, res) {
-        req.session.destroy(function(err) {
+    function (req, res) {
+        req.session.destroy(function (err) {
             console.log('out');
             req.logout();
         });

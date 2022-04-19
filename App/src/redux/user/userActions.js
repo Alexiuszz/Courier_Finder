@@ -1,43 +1,37 @@
-import axios from 'axios'
-import {
-  FETCH_USERS_REQUEST,
-  FETCH_USERS_SUCCESS,
-  FETCH_USERS_FAILURE
-} from './userTypes'
+import * as actions from './userTypes';
+import { callApiEndpoint } from '../../api/ApiCall';
 
-export const fetchUsers = () => {
+
+export const login = (userData) => {
   return (dispatch) => {
-    dispatch(fetchUsersRequest())
-    axios
-      .get('https://jsonplaceholder.typicode.com/users')
-      .then(response => {
-        // response.data is the users
-        const users = response.data
-        dispatch(fetchUsersSuccess(users))
-      })
-      .catch(error => {
-        // error.message is the error message
-        dispatch(fetchUsersFailure(error.message))
-      })
+    dispatch(fetchUserRequest());
+    return callApiEndpoint(
+      '/auth/login',
+      'post',
+      userData,
+      (resp) => {
+        dispatch(fetchUserSuccess(resp));
+      }
+    )
   }
 }
 
-export const fetchUsersRequest = () => {
+export const fetchUserRequest = () => {
   return {
-    type: FETCH_USERS_REQUEST
+    type: actions.FETCH_USER_REQUEST
   }
 }
 
-export const fetchUsersSuccess = users => {
+export const fetchUserSuccess = users => {
   return {
-    type: FETCH_USERS_SUCCESS,
+    type: actions.FETCH_USER_SUCCESS,
     payload: users
   }
 }
 
 export const fetchUsersFailure = error => {
   return {
-    type: FETCH_USERS_FAILURE,
+    type: actions.FETCH_USER_FAILURE,
     payload: error
   }
 }

@@ -1,36 +1,73 @@
-import {
-  FETCH_USERS_REQUEST,
-  FETCH_USERS_SUCCESS,
-  FETCH_USERS_FAILURE
-} from './userTypes'
+import * as actions from './userTypes'
 
 const initialState = {
-  loading: false,
-  users: [],
-  error: ''
+  loggingIn:false,
+  signingUp: false,
+  user: {},
+  errorMsg: '',
+  signedIn: false,
+  loggedIn: false,
+  token: null,
+  tokenExpirationTime: null,
 }
 
-const reducer = (state = initialState, action) => {
+const AppReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_USERS_REQUEST:
+    case actions.FETCH_USER_REQUEST:
       return {
         ...state,
         loading: true
       }
-    case FETCH_USERS_SUCCESS:
+    case actions.FETCH_USER_SUCCESS:
       return {
+        ...state,
         loading: false,
-        users: action.payload,
+        user: action.payload,
         error: ''
       }
-    case FETCH_USERS_FAILURE:
+    case actions.FETCH_USER_FAILURE:
       return {
+        ...state,
         loading: false,
-        users: [],
+        user: {},
         error: action.payload
+      }
+    case actions.SIGNUP_ERROR:
+      return {
+        ...state,
+        loggedIn: false,
+        error: actions.payload
+      }
+    case actions.SIGNUP_SUCCESSFUL:
+      return {
+        ...state,
+        loggedIn: true,
+        error: ''
+      }
+    case actions.LOGIN_ERROR:
+      return {
+        ...state,
+        loggedIn: false,
+        error: actions.payload
+      }
+    case actions.LOGIN_SUCCESSFUL:
+      return {
+        ...state,
+        loggedIn: true,
+        error: ''
+      }
+    case actions.SET_USER_TOKEN:
+      return {
+        ...state,
+        token: action.payload
+      }
+    case actions.SET_TOKEN_EXPIRATION_TIME:
+      return {
+        ...state,
+        tokenExpirationTime: action.payload
       }
     default: return state
   }
 }
 
-export default reducer
+export default AppReducer;

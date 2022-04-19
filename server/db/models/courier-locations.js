@@ -7,8 +7,8 @@ const locationSchema = new Schema({
         type: String,
         required: true,
     },
-    location: {
-        type: String,
+    locations: {
+        type: Array,
         required: true,
     },
 }, { timestamps: true });

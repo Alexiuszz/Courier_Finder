@@ -1,8 +1,6 @@
 import React from 'react';
-import { Merchant } from './Merchant';
-import { Courier } from './Courier';
 
-export function Signup(props) {
+export function Signup({children}) {
     return (
         <div className="signupContainer">
             <div className="signupTitle">
@@ -10,7 +8,7 @@ export function Signup(props) {
                 <p>Sign up as a Courier or a Merchant to get started</p>
             </div>
             <div className="signup">
-                <Courier />
+                {children}
                 {/* <div />
                 <Merchant /> */}
             </div>

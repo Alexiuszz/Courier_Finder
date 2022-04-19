@@ -1,6 +1,7 @@
 import React, { useReducer, useState } from 'react';
 import SignupForm from '../../Components/form_components/SignupForm';
 import { useAuth } from '../../auth_setup/use-auth';
+import { Signup } from './Signup';
 
 export function Courier() {
     const reducer = (user, action) => {
@@ -120,7 +121,7 @@ export function Courier() {
     }
 
     return (
-        <div>
+        <Signup >
             <SignupForm
                 user={user}
                 reqNameError={reqNameError}
@@ -139,7 +140,7 @@ export function Courier() {
                 handleSubmit={handleSubmit}
                 clearCurrent={clearCurrent}
             />
-        </div>
+        </Signup>
     )
 
 

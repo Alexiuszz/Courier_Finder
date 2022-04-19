@@ -65,6 +65,33 @@ export function Input({ className = '', name = '', label = '', type = 'text', va
     )
 }
 
+export function TextArea({ className = '', name = '', label = '', type = 'text', value, handleChange = f => f, rows, cols}) {
+    const [active, setActive] = useState(false);
+
+    const onChange = (e) => {
+        let { value } = e.target;
+        handleChange(e.target);
+        if (value !== '') {
+            setActive(true);
+        }
+        else
+            setActive(false);
+    }
+    return (
+        <div className={`inputWLabel ${className}`}>
+            <label className={active ? 'Active' : ''} htmlFor={type}>{label}</label>
+            <textarea
+                name={name}
+                onChange={onChange}
+                value={value}
+                cols={cols}
+                rows={rows}
+            ></textarea>           
+             <div className="focusBorder"></div>
+        </div>
+    )
+}
+
 
 export function CheckBox({ label = '', handleChange = f => f, className = '', name = '' }) {
     const onChange = e => handleChange(e.target);
