@@ -21,10 +21,10 @@ export function callApiEndpoint(endpoint, method, data, successCallback, failedC
                 //console.log("Response: ");
                 //console.log(resp);
                 if (resp.data) {
-                    if (resp.data.status === "failed") {
+                    if (resp.status !== 200 || resp.status !== 201 || resp.status !== 202 ) {
                         throw new Error(resp.data.data.message);
                     }
-                    successCallback(resp.data.data);
+                    successCallback(resp.data);
                 }
             }
         )
@@ -41,27 +41,12 @@ export function callApiEndpoint(endpoint, method, data, successCallback, failedC
 
                     // } else
                     if (error.response && error.response.data) {
-                        errMsg = (error.response.data.data !== undefined) ?
-                            error.response.data.data.message
-                            :
-                            error.response.data;
+                        errMsg = error.response.data;
                     } else {
                         errMsg = error.message;
                     }
                 }
-                if (
-                    (errMsg !== "" &&
-                        (
-                            errMsg.toLowerCase() === "invalid auth token." ||
-                            errMsg.toLocaleLowerCase() === "authorization header value is invalid."
-                        )) ||
-                    (error.response && error.response.data && error.response.data.data && error.response.data.data.errCode === 800)
-                ) {
-                    alert("Authentication token has expired, invalidated by login on another device/browser or you have just deleted your account on Theragist.");
-                    
-                    window.location.href = "#/logout";
-                }
-
+                
                 failedCallback((error.response) ? error.response.data : errMsg);
             }
         )
