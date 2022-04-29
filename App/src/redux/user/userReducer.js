@@ -1,36 +1,46 @@
 import * as actions from './userTypes'
 
 const initialState = {
-  loggingIn: false,
-  loggedIn: false,
-
-  signingUp: false,
-  signedIn: false,
+  busy: false,
 
   user: {},
   error: '',
   token: null,
   tokenExpirationTime: null,
+
+  loggingIn: false,
+  loggedIn: false,
+  loginError: false,
+
+  signupError: false,
+  signingUp: false,
+  signedUp: false,
+
 }
 
 const AppReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actions.SET_BUSY:
+      return {
+        ...state,
+        busy: action.payload
+      }
     case actions.FETCH_USER_REQUEST:
       return {
         ...state,
-        loading: true
+        busy: true
       }
     case actions.FETCH_USER_SUCCESS:
       return {
         ...state,
-        loading: false,
+        busy: false,
         user: action.payload,
         error: ''
       }
     case actions.FETCH_USER_FAILURE:
       return {
         ...state,
-        loading: false,
+        busy: false,
         user: {},
         error: action.payload,
         fetchUserError: true
@@ -38,12 +48,14 @@ const AppReducer = (state = initialState, action) => {
     case actions.SIGNUP_ERROR:
       return {
         ...state,
-        signUpError: true,
-        error: actions.payload
+        signupError: true,
+        error: action.payload
       }
     case actions.SIGNUP_SUCCESSFUL:
       return {
         ...state,
+        signupError: false,
+        signedUp: true,
         error: ''
       }
     case actions.SIGNUP_REQUEST:
@@ -61,7 +73,7 @@ const AppReducer = (state = initialState, action) => {
         ...state,
         loggedIn: false,
         loggingInError: true,
-        error: actions.payload
+        error: action.payload
       }
     case actions.LOGIN_SUCCESSFUL:
       return {
@@ -69,6 +81,16 @@ const AppReducer = (state = initialState, action) => {
         loggedIn: true,
         loggingInError: false,
         error: ''
+      }
+    case actions.SET_USER:
+      return {
+        ...state,
+        user: action.payload
+      }
+    case actions.SET_ERROR:
+      return {
+        ...state,
+        error: action.payload
       }
     case actions.SET_USER_TOKEN:
       return {
@@ -79,6 +101,18 @@ const AppReducer = (state = initialState, action) => {
       return {
         ...state,
         tokenExpirationTime: action.payload
+      }
+    case actions.LOGGED_OUT:
+      return {
+        ...state,
+        user: {},
+        loggedIn: false,
+        token: null,
+        tokenExpirationTime: null
+      }
+    case actions.RESET_STATE:
+      return {
+        initialState
       }
     default: return state
   }

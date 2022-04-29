@@ -4,18 +4,18 @@ import searchIcon from '../../Icons/Search_alt.svg'
 import mapIcon from '../../Icons/mapIcon.svg'
 import '../../styles/RightSideBar.css';
 import '../../styles/FormComponents.css';
-import { states } from '../../data/states';
+// import { states } from '../../data/states';
 
 
 function RightBar() {
-    const stateOptions = states();
+    // const stateOptions = states();
 
     return (
         <div className='sideBar'>
             <h3>Find a courier</h3>
             <Divider />
             <Divider />
-            <SelectInput options={stateOptions} label='State'/>
+            {/* <SelectInput options={stateOptions} label='State'/> */}
             <IconButton className='iconButton1' icon={searchIcon} />
 
             <h3>Or</h3>

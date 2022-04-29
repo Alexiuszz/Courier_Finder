@@ -1,21 +1,21 @@
 import * as actions from './userTypes';
 import { callApiEndpoint } from '../../api/ApiCall';
 
-
+//login thunk
 export const loginAction = (userData) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch({ type: actions.LOGIN_REQUEST });
     return callApiEndpoint(
       '/auth/login',
       'post',
       userData,
       (res) => {
-        if (res.data._id !== null && res.data._id !== undefined) {          
-        dispatch({ type: actions.LOGIN_SUCCESSFUL, payload: res });
-          setUserToken(res.data._id + "@" + res.data.email, new Date(new Date().getTime() + 1000 * 60 * 60));
-      } else {
-          alert("Username or Password incorrect!");
-      }
+        if (res.data._id !== null && res.data._id !== undefined) {
+          dispatch({ type: actions.LOGIN_SUCCESSFUL, payload: res });
+          dispatch(setUserToken(res.data._id + "@" + res.data.email, new Date(new Date().getTime() + 1000 * 60 * 60)));
+        } else {
+          dispatch({ type: actions.LOGIN_ERROR, payload: "Username or Password incorrect!" });
+        }
       },
       (error) => {
         dispatch({ type: actions.LOGIN_ERROR, payload: error })
@@ -24,8 +24,9 @@ export const loginAction = (userData) => {
   };
 }
 
+//thunk
 export const signupAction = (userData) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch({ type: actions.LOGIN_REQUEST });
     return callApiEndpoint(
       '/auth/new-courier',
@@ -33,9 +34,9 @@ export const signupAction = (userData) => {
       userData,
       (res) => {
         if (!res)
-        dispatch({type: actions.SIGNUP_ERROR, payload: "Email already exists"})
-          dispatch({ type: actions.SIGNUP_SUCCESSFUL, payload: res });
-        
+          return dispatch({ type: actions.SIGNUP_ERROR, payload: "Email already exists" })
+        dispatch({ type: actions.SIGNUP_SUCCESSFUL, payload: res });
+
       },
       (error) => {
         dispatch({ type: actions.SIGNUP_ERROR, payload: error })
@@ -44,11 +45,37 @@ export const signupAction = (userData) => {
   };
 }
 
+export const fetchUser = () => {
+  return (dispatch, getState) => {
+    dispatch(fetchUserRequest());
+    const storedData = JSON.parse(localStorage.getItem('userData'));
+
+    //check if user token exists
+    if (storedData && storedData.token && new Date(storedData.expirationTime) > new Date()) {
+      return callApiEndpoint(
+        '/getUser',
+        'get',
+        {},
+        res => {
+          if (res.data._id !== null && res.data._id !== undefined) {
+            dispatch(fetchUserSuccess(res.data));
+            dispatch(setUserToken(res.data._id + "@" + res.data.email, new Date(new Date().getTime() + 1000 * 60 * 60)));
+          }
+          else {
+            return dispatch({ type: actions.FETCH_USER_FAILURE, payload: "Invalid Request!" });
+          }
+        },
+        error => {
+          dispatch({ type: actions.FETCH_USER_FAILURE, payload: error });
+        }
+      );
+    }
+  };
+}
+
 export const setUserToken = (newToken, expirationTime) => {
 
-  return (dispatch) => {
-    dispatch({ type: actions.setTokenExpirationTime, payload: expirationTime });
-
+  return (dispatch, getState) => {
     localStorage.setItem(
       'userData',
       JSON.stringify({
@@ -56,26 +83,84 @@ export const setUserToken = (newToken, expirationTime) => {
         expirationTime: expirationTime.toISOString()
       })
     );
-    dispatch({ type: actions.setUserToken, payload: newToken });
+    dispatch(setToken(newToken));
+    dispatch(setExpirationTime(expirationTime));
   };
 }
 
+export const signout = () => {
+  return (dispatch, getState) => {
+    dispatch({ type: actions.LOGGED_OUT });
+  }
+}
+
+export const checkUserToken = (callback, fetch = true) => {
+  return (dispatch, getState) => {
+    const storedData = JSON.parse(localStorage.getItem('userData'));
+    if (storedData && storedData.token && new Date(storedData.expirationTime) > new Date()) {
+      if (getState().user !== {}) {
+        callback();
+        if (fetch)
+          dispatch(fetchUser());
+      }
+    } else {
+      dispatch(dispatch(signout()));
+    }
+  }
+}
+
+export const setExpirationTimeout = () => {
+  let logoutTimer;
+  return (dispatch, getState) => {
+    const state = getState();
+    if (state.token && state.tokenExpirationTime) {
+      const remainingTime = state.tokenExpirationTime.getTime() - new Date().getTime();
+      logoutTimer = setTimeout(() => dispatch(signout()), remainingTime);
+    } else {
+      clearTimeout(logoutTimer);
+    }
+  }
+}
+export const setBusy = (busy) => {
+  return {
+    type: actions.SET_BUSY,
+    payload: busy
+  }
+}
+
+export const resetState = () => {
+  return {
+    type: actions.RESET_STATE
+  };
+}
 export const fetchUserRequest = () => {
   return {
     type: actions.FETCH_USER_REQUEST
   }
 }
 
-export const fetchUserSuccess = users => {
+export const fetchUserSuccess = user => {
   return {
     type: actions.FETCH_USER_SUCCESS,
-    payload: users
-  }
+    payload: user
+  };
 }
 
 export const fetchUsersFailure = error => {
   return {
     type: actions.FETCH_USER_FAILURE,
     payload: error
-  }
+  };
 }
+
+function setToken(newToken) {
+  return { type: actions.setUserToken, payload: newToken };
+}
+
+function setExpirationTime(expirationTime) {
+  return {
+    type: actions.setTokenExpirationTime,
+    payload: expirationTime
+  };
+}
+
