@@ -3,6 +3,8 @@ import * as actions from './userTypes'
 const initialState = {
   busy: false,
 
+  acctMenuDrop: false,
+
   user: {},
   error: '',
   token: null,
@@ -24,6 +26,11 @@ const AppReducer = (state = initialState, action) => {
       return {
         ...state,
         busy: action.payload
+      }
+    case actions.SET_ACCT_MENU_DROP:
+      return{
+        ...state,
+        acctMenuDrop: action.payload
       }
     case actions.FETCH_USER_REQUEST:
       return {

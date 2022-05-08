@@ -1,39 +1,49 @@
-import React, { useState } from 'react';
-import {
-  Routes,
-  Route,
-} from 'react-router-dom';
-import './styles/App.css';
-import MainNavbar from './Components/Nav/MainNavbar';
-import Home from './pages/Home';
-import Login from './pages/Auth-pages/Login';
-import UserAccount from './pages/UserAccount';
-import { ProvideAuth } from './auth_setup/use-auth';
-import PrivateRoute from './auth_setup/PrivateRoute';
-import AuthLayout from './pages/Auth-pages/AuthLayout';
-import ProfileSetup from './pages/ProfileSetup';
-import { Courier } from './pages/Auth-pages/Courier';
+import React, { useState } from "react";
+
+import * as actions from "./redux/user/userTypes";
+
+import { Routes, Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import "./styles/App.css";
+import MainNavbar from "./Components/Nav/MainNavbar";
+import Home from "./pages/Home";
+import Login from "./pages/Auth-pages/Login";
+import UserAccount from "./pages/UserAccount";
+import { ProvideAuth } from "./auth_setup/use-auth";
+import PrivateRoute from "./auth_setup/PrivateRoute";
+import AuthLayout from "./pages/Auth-pages/AuthLayout";
+import ProfileSetup from "./pages/ProfileSetup";
+import { Courier } from "./pages/Auth-pages/Courier";
+import { acctDropDown } from "./redux/user/userActions";
 
 
 function App() {
-  const [drop, setDrop] = useState(false);
+  const dispatch = useDispatch();
+  const acctMenuDrop = useSelector((state) => state.user.acctMenuDrop);
+  // const [drop, setDrop] = useState(false);
 
-  const acctDropDown = (isBody = true) => isBody ? setDrop(false) : setDrop(drop => !drop)
+  // const acctDropDown = (isBody = true) =>
+  //   isBody
+  //     ? dispatch({ type: actions.SET_ACCT_MENU_DROP, payload: false })
+  //     : dispatch({
+  //         type: actions.SET_ACCT_MENU_DROP,
+  //         payload: !acctMenuDrop,
+  //       })
   return (
-    <ProvideAuth >
-      <div onClick={drop ? acctDropDown : undefined}>
-        <MainNavbar acctDropDown={acctDropDown} drop={drop} />
-        <Routes >
+    <ProvideAuth>
+      <div onClick={acctMenuDrop ? () => dispatch(acctDropDown) : undefined}>
+        <MainNavbar acctDropDown={acctDropDown} acctMenuDrop={acctMenuDrop}/>
+        <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<ProfileSetup />} />
-          <Route path="/auth" element={<AuthLayout />} >
+          <Route path="/auth" element={<AuthLayout />}>
             <Route path="signup" element={<Courier />} />
             <Route path="signin" element={<Login />} />
           </Route>
           <Route
             path="/account"
             element={
-              <PrivateRoute >
+              <PrivateRoute>
                 <UserAccount />
               </PrivateRoute>
             }
