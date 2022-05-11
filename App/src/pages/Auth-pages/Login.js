@@ -1,24 +1,26 @@
 import React, { useReducer, useState } from 'react';
-import { useAuth } from '../../auth_setup/use-auth.js';
 import UserLogin from '../../Components/form_components/LoginForm';
 import {
     useLocation,
     Navigate
   } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginAction } from '../../redux/user/userActions';
 
 function Login() {
     const [user, setUser] = useReducer((user, update) => ({ ...user, ...update }), {
         email: '',
         password: '',
         keepSignedin: false
-    })
-
+    });
+    const token = useSelector(state => state.user.token);
+    const dispatch = useDispatch();
+    
 
     const [emptyField, setEmptyField] = useState(false);
 
     const reqEmailError = user.email === "";
     const reqPasswordError = user.password === "";
-    const auth = useAuth();
     const errorTag = (mess = 'Required Field') => (<p className='errorTag'>{mess}</p>);
 
     const handleSubmit = (e) => {
@@ -27,7 +29,7 @@ function Login() {
             setEmptyField(true);
             return;
         }
-        auth.login(user);
+        dispatch(loginAction(user));
     }
 
     const handleChange = ({ name, value, checked, type }) => {
@@ -41,7 +43,7 @@ function Login() {
     }
 
     let location = useLocation();
-    if (auth.token) {
+    if (token) {
         return <Navigate to="/account" state={{ from: location }} />;
       }
     return (

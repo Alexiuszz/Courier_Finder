@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 app.use(
     cors({
-        origin: "http://localhost:3002/", // <-- location of the react app were connecting to
+        origin: "http://localhost:3002", // <-- location of the react app were connecting to
         credentials: true,
     })
 );

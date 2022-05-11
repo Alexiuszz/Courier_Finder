@@ -5,12 +5,10 @@ import "../../styles/MainNavBar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
-// import { useAuth } from '../../auth_setup/use-auth';
 import { useDispatch, useSelector } from "react-redux";
 import { signout } from "../../redux/user/userActions";
 
 const MainNavbar = ({ acctDropDown, acctMenuDrop }) => {
-  // const auth = useAuth();
 
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);

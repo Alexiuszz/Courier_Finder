@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosInstance = axios.create(
     {
-        baseURL: 'http://localhost:3002',
+        baseURL: 'http://localhost:3003',
         headers: {
             "Content-type": "application/json"
         }
@@ -11,7 +11,7 @@ const axiosInstance = axios.create(
 
 export function callApiEndpoint(endpoint, method, data, successCallback, failedCallback, alwaysCallback) {
     axiosInstance({
-        url: `/${endpoint}`,
+        url: `http://localhost:3003/${endpoint}`,
         method: method,
         data: (data) ? data : {},
         responseType: "json",
@@ -21,8 +21,8 @@ export function callApiEndpoint(endpoint, method, data, successCallback, failedC
                 //console.log("Response: ");
                 //console.log(resp);
                 if (resp.data) {
-                    if (resp.status !== 200 || resp.status !== 201 || resp.status !== 202 ) {
-                        throw new Error(resp.data.data.message);
+                    if (resp.status > 400) {
+                        throw new Error(resp.data.message);
                     }
                     successCallback(resp.data);
                 }

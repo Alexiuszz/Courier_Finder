@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import * as actions from "./redux/user/userTypes";
 
@@ -20,15 +20,7 @@ import { acctDropDown } from "./redux/user/userActions";
 function App() {
   const dispatch = useDispatch();
   const acctMenuDrop = useSelector((state) => state.user.acctMenuDrop);
-  // const [drop, setDrop] = useState(false);
-
-  // const acctDropDown = (isBody = true) =>
-  //   isBody
-  //     ? dispatch({ type: actions.SET_ACCT_MENU_DROP, payload: false })
-  //     : dispatch({
-  //         type: actions.SET_ACCT_MENU_DROP,
-  //         payload: !acctMenuDrop,
-  //       })
+  
   return (
     <ProvideAuth>
       <div onClick={acctMenuDrop ? () => dispatch(acctDropDown) : undefined}>

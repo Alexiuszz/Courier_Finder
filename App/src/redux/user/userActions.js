@@ -6,11 +6,11 @@ export const loginAction = (userData) => {
   return (dispatch, getState) => {
     dispatch({ type: actions.LOGIN_REQUEST });
     return callApiEndpoint(
-      "/auth/login",
+      "auth/login",
       "post",
       userData,
       (res) => {
-        if (res.data._id !== null && res.data._id !== undefined) {
+        if (res._id !== null && res._id !== undefined) {
           dispatch({ type: actions.LOGIN_SUCCESSFUL, payload: res });
           dispatch(
             setUserToken(
