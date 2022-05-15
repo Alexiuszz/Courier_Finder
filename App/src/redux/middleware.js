@@ -4,7 +4,7 @@ import * as actions from './user/userTypes';
 export const loggedOut = ({ dispatch }) => next => action => {
     if (action.type === actions.LOGGED_OUT) {
         callApiEndpoint (
-            '/signout',
+            'auth/signout',
             'get',
             {},
             res => {
