@@ -1,7 +1,5 @@
 import React from "react";
 
-import * as actions from "./redux/user/userTypes";
-
 import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./styles/App.css";
@@ -9,7 +7,6 @@ import MainNavbar from "./Components/Nav/MainNavbar";
 import Home from "./pages/Home";
 import Login from "./pages/Auth-pages/Login";
 import UserAccount from "./pages/UserAccount";
-import { ProvideAuth } from "./auth_setup/use-auth";
 import PrivateRoute from "./auth_setup/PrivateRoute";
 import AuthLayout from "./pages/Auth-pages/AuthLayout";
 import ProfileSetup from "./pages/ProfileSetup";
@@ -22,8 +19,7 @@ function App() {
   const acctMenuDrop = useSelector((state) => state.user.acctMenuDrop);
   
   return (
-    <ProvideAuth>
-      <div onClick={acctMenuDrop ? () => dispatch(acctDropDown) : undefined}>
+      <div onClick={acctMenuDrop ? () => dispatch(acctDropDown(true)) : undefined}>
         <MainNavbar acctDropDown={acctDropDown} acctMenuDrop={acctMenuDrop}/>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -42,7 +38,6 @@ function App() {
           />
         </Routes>
       </div>
-    </ProvideAuth>
   );
 }
 

@@ -11,10 +11,11 @@ export const loginAction = (userData) => {
       userData,
       (res) => {
         if (res._id !== null && res._id !== undefined) {
-          dispatch({ type: actions.LOGIN_SUCCESSFUL, payload: res });
+          dispatch({ type: actions.LOGIN_SUCCESSFUL });
+          dispatch({ type: actions.SET_USER, payload: res });
           dispatch(
             setUserToken(
-              res.data._id + "@" + res.data.email,
+              res._id + "@" + res.email,
               new Date(new Date().getTime() + 1000 * 60 * 60)
             )
           );
@@ -35,18 +36,22 @@ export const loginAction = (userData) => {
 //thunk
 export const signupAction = (userData) => {
   return (dispatch, getState) => {
-    dispatch({ type: actions.LOGIN_REQUEST });
+    dispatch({ type: actions.SIGNUP_REQUEST });
     return callApiEndpoint(
-      "/auth/new-courier",
+      "auth/new-courier",
       "post",
       userData,
       (res) => {
-        if (!res)
-          return dispatch({
+        if (!res) {
+          dispatch({
             type: actions.SIGNUP_ERROR,
             payload: "Email already exists",
           });
-        dispatch({ type: actions.SIGNUP_SUCCESSFUL, payload: res });
+          return;
+        } else {
+          dispatch({ type: actions.SIGNUP_SUCCESSFUL, payload: res });
+          window.location.href = "http://localhost:3002/auth/signin";
+        }
       },
       (error) => {
         dispatch({ type: actions.SIGNUP_ERROR, payload: error });

@@ -13,10 +13,6 @@ import '../../styles/mapStyles.css';
 import { AddressInput } from "../form_components/FormComponents";
 
 const libraries = ["places"];
-const mapContainerStyle = {
-    width: '70vw',
-    height: '70vh'
-};
 const center = {
     lat: 9.0820,
     lng: 8.6753,

@@ -11,7 +11,7 @@ import { signout } from "../../redux/user/userActions";
 const MainNavbar = ({ acctDropDown, acctMenuDrop }) => {
 
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.token);
+  const token = useSelector((state) => state.user.token);
 
   let navigate = useNavigate();
 
@@ -31,8 +31,8 @@ const MainNavbar = ({ acctDropDown, acctMenuDrop }) => {
               <FontAwesomeIcon className="arrowHead" icon={faChevronDown} />{" "}
             </p>
             <ul
-              className="dropList"
-              style={{ display: acctMenuDrop ? "flex" : "none" }}
+              className= {acctMenuDrop ? "dropList drop": "dropList noDrop"}
+              // style={{ display: acctMenuDrop ? "flex" : "none" }}
             >
               {!token ? (
                 <>
