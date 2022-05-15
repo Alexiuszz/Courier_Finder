@@ -23,7 +23,7 @@ function App() {
         <MainNavbar acctDropDown={acctDropDown} acctMenuDrop={acctMenuDrop}/>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<ProfileSetup />} />
+          <Route path="/create-profile" element={<ProfileSetup />} />
           <Route path="/auth" element={<AuthLayout />}>
             <Route path="signup" element={<Courier />} />
             <Route path="signin" element={<Login />} />

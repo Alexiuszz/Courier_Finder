@@ -1,24 +1,22 @@
 import * as actions from "./userTypes";
 import { callApiEndpoint } from "../../api/ApiCall";
+import { SetCookie } from "../../auth_setup/Cookie";
 
 //login thunk
 export const loginAction = (userData) => {
   return (dispatch, getState) => {
-    dispatch({ type: actions.LOGIN_REQUEST });
+    dispatch({ type: actions.LOGIN_REQUEST, payload: true });
     return callApiEndpoint(
       "auth/login",
       "post",
       userData,
-      (res) => {
+      (response) => {
+        dispatch({ type: actions.LOGIN_REQUEST, payload: false });
+        const res = { ...response._doc, token: response.token };
         if (res._id !== null && res._id !== undefined) {
-          dispatch({ type: actions.LOGIN_SUCCESSFUL });
-          dispatch({ type: actions.SET_USER, payload: res });
-          dispatch(
-            setUserToken(
-              res._id + "@" + res.email,
-              new Date(new Date().getTime() + 1000 * 60 * 60)
-            )
-          );
+          dispatch({ type: actions.LOGIN_SUCCESSFUL, payload: res });
+
+          // dispatch({ type: actions.SET_USER, payload: res });
         } else {
           dispatch({
             type: actions.LOGIN_ERROR,
@@ -27,7 +25,12 @@ export const loginAction = (userData) => {
         }
       },
       (error) => {
-        dispatch({ type: actions.LOGIN_ERROR, payload: error });
+        dispatch({ type: actions.LOGIN_REQUEST, payload: false });
+
+        dispatch({
+          type: actions.LOGIN_ERROR,
+          payload: error,
+        });
       }
     );
   };

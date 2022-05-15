@@ -7,7 +7,7 @@ import thunk from "redux-thunk";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 
 import rootReducer from "./rootReducer";
-import { loggedOut } from "./middleware";
+import { loggedIn, loggedOut } from "./middleware";
 
 const persistConfig = {
   key: "root",
@@ -17,7 +17,7 @@ const persistConfig = {
 
 const store = createStore(
   persistReducer(persistConfig, rootReducer),
-  composeWithDevTools(applyMiddleware(logger, thunk, loggedOut))
+  composeWithDevTools(applyMiddleware(logger, thunk, loggedOut, loggedIn))
 );
 
 const persistor = persistStore(store);

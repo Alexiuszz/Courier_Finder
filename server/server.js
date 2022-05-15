@@ -36,19 +36,9 @@ app.use(passport.session());
 
 app.use('/auth', authRoute);
 
-
-
-app.get('/getUser',
-    require('connect-ensure-login').ensureLoggedIn(),
-    function (req, res) {
-        console.log(req.user);
-        res.send(req.user);
-    });
-
-
-app.get('/', (req, res) => {
-    res.send('<h1>Hello</h1>');
-});
+// app.get('/', (req, res) => {
+//     res.send('<h1>Hello</h1>');
+// });
 
 //Mongo DB connect
 //mongoose connection

@@ -1,128 +1,134 @@
-import * as actions from './userTypes'
+import { GetCookie } from "../../auth_setup/Cookie";
+import * as actions from "./userTypes";
 
+const token = GetCookie("auth-token");
 const initialState = {
   busy: false,
 
   acctMenuDrop: false,
 
   user: {},
-  error: '',
-  token: null,
-  tokenExpirationTime: null,
+  error: "",
+  token: token,
+  // tokenExpirationTime: null,
 
   loggingIn: false,
-  loggedIn: false,
+  loggedIn: token && token.length > 0,
   loginError: false,
 
   signupError: false,
   signingUp: false,
   signedUp: false,
-
-}
+};
 
 const AppReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.SET_BUSY:
       return {
         ...state,
-        busy: action.payload
-      }
+        busy: action.payload,
+      };
     case actions.SET_ACCT_MENU_DROP:
-      return{
+      return {
         ...state,
-        acctMenuDrop: action.payload
-      }
+        acctMenuDrop: action.payload,
+      };
     case actions.FETCH_USER_REQUEST:
       return {
         ...state,
-        busy: true
-      }
+        busy: true,
+      };
     case actions.FETCH_USER_SUCCESS:
       return {
         ...state,
         busy: false,
         user: action.payload,
-        error: ''
-      }
+        error: "",
+      };
     case actions.FETCH_USER_FAILURE:
       return {
         ...state,
         busy: false,
         user: {},
         error: action.payload,
-        fetchUserError: true
-      }
+        fetchUserError: true,
+      };
     case actions.SIGNUP_ERROR:
       return {
         ...state,
         signupError: true,
-        error: action.payload
-      }
+        error: action.payload,
+      };
     case actions.SIGNUP_SUCCESSFUL:
       return {
         ...state,
         signupError: false,
         signedUp: true,
-        error: ''
-      }
+        error: "",
+      };
     case actions.SIGNUP_REQUEST:
       return {
         ...state,
-        signingUp: false
-      }
+        signingUp: false,
+      };
     case actions.LOGIN_REQUEST:
       return {
         ...state,
-        loggingIn: false
-      }
+        loggingIn: action.payload,
+      };
     case actions.LOGIN_ERROR:
       return {
         ...state,
         loggedIn: false,
-        loggingInError: true,
-        error: action.payload
-      }
+        loggingInError: false,
+        error: action.payload,
+      };
     case actions.LOGIN_SUCCESSFUL:
       return {
         ...state,
         loggedIn: true,
         loggingInError: false,
-        error: ''
-      }
+        error: "",
+        token: action.payload.token,
+        user: {
+          email: action.payload.email,
+        },
+      };
     case actions.SET_USER:
       return {
         ...state,
-        user: action.payload
-      }
+        user: action.payload,
+      };
     case actions.SET_ERROR:
       return {
         ...state,
-        error: action.payload
-      }
-    case actions.SET_USER_TOKEN:
-      return {
-        ...state,
-        token: action.payload
-      }
-    case actions.SET_TOKEN_EXPIRATION_TIME:
-      return {
-        ...state,
-        tokenExpirationTime: action.payload
-      }
+        error: action.payload,
+      };
+    // case actions.SET_USER_TOKEN:
+    //   return {
+    //     ...state,
+    //     token: action.payload
+    //   }
+    // case actions.SET_TOKEN_EXPIRATION_TIME:
+    //   return {
+    //     ...state,
+    //     tokenExpirationTime: action.payload
+    //   }
     case actions.LOGGED_OUT:
       return {
         ...state,
         user: {},
         loggedIn: false,
         token: null,
-        tokenExpirationTime: null
-      }
+        // tokenExpirationTime: null,
+      };
     case actions.RESET_STATE:
       return {
-        initialState
-      }
-    default: return state
+        initialState,
+      };
+    default:
+      return state;
   }
-}
+};
 
 export default AppReducer;
