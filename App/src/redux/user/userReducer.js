@@ -1,7 +1,10 @@
+import storage from "redux-persist/lib/storage";
+import { persistReducer } from "redux-persist";
 import { GetCookie } from "../../auth_setup/Cookie";
 import * as actions from "./userTypes";
 
-const token = GetCookie("auth-token");
+let token = GetCookie("auth-token");
+
 const initialState = {
   busy: false,
 
@@ -104,11 +107,11 @@ const AppReducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
       };
-    // case actions.SET_USER_TOKEN:
-    //   return {
-    //     ...state,
-    //     token: action.payload
-    //   }
+    case actions.SET_USER_TOKEN:
+      return {
+        ...state,
+        token: action.payload,
+      };
     // case actions.SET_TOKEN_EXPIRATION_TIME:
     //   return {
     //     ...state,
@@ -131,4 +134,10 @@ const AppReducer = (state = initialState, action) => {
   }
 };
 
-export default AppReducer;
+const persistConfig = {
+  key: "user",
+  storage: storage,
+  blacklist: ["token", "loggedIn"],
+};
+
+export default persistReducer(persistConfig, AppReducer);

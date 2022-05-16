@@ -12,32 +12,35 @@ import AuthLayout from "./pages/Auth-pages/AuthLayout";
 import ProfileSetup from "./pages/ProfileSetup";
 import { Courier } from "./pages/Auth-pages/Courier";
 import { acctDropDown } from "./redux/user/userActions";
-
+import { GetCookie } from "./auth_setup/Cookie";
+import { SET_USER_TOKEN } from "./redux/user/userTypes";
 
 function App() {
   const dispatch = useDispatch();
   const acctMenuDrop = useSelector((state) => state.user.acctMenuDrop);
-  
+
   return (
-      <div onClick={acctMenuDrop ? () => dispatch(acctDropDown(true)) : undefined}>
-        <MainNavbar acctDropDown={acctDropDown} acctMenuDrop={acctMenuDrop}/>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/create-profile" element={<ProfileSetup />} />
-          <Route path="/auth" element={<AuthLayout />}>
-            <Route path="signup" element={<Courier />} />
-            <Route path="signin" element={<Login />} />
-          </Route>
-          <Route
-            path="/account"
-            element={
-              <PrivateRoute>
-                <UserAccount />
-              </PrivateRoute>
-            }
-          />
-        </Routes>
-      </div>
+    <div
+      onClick={acctMenuDrop ? () => dispatch(acctDropDown(true)) : undefined}
+    >
+      <MainNavbar acctDropDown={acctDropDown} acctMenuDrop={acctMenuDrop} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/create-profile" element={<ProfileSetup />} />
+        <Route path="/auth" element={<AuthLayout />}>
+          <Route path="signup" element={<Courier />} />
+          <Route path="signin" element={<Login />} />
+        </Route>
+        <Route
+          path="/account"
+          element={
+            <PrivateRoute>
+              <UserAccount />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
+    </div>
   );
 }
 

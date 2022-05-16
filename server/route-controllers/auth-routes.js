@@ -102,6 +102,7 @@ router.get("/signout", function (req, res) {
   req.session.destroy(function (err) {
     console.log("out");
     req.logout();
+    res.send(true);
   });
 });
 

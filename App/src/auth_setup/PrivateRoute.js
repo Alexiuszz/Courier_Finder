@@ -7,11 +7,11 @@ import {
 
 //Routes for pages that need authentication
 export default function PrivateRoute({ children, ...rest }) {
-  const token = useSelector((state) => state.user.token);
+  const loggedIn = useSelector((state) => state.user.loggedIn);
 
   let location = useLocation();
 
-  if (!token) {
+  if (!loggedIn) {
     return <Navigate to="/auth/signin" state={{ from: location }} />;
   }
 

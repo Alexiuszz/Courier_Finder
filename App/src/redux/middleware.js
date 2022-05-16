@@ -34,7 +34,11 @@ export const loggedOut =
         "get",
         {},
         (res) => {
-          localStorage.removeItem("userData");
+          // Clear token cookie
+          SetCookie("auth-token", "", "/", null);
+
+          localStorage.removeItem("persist:user");
+          dispatch({ type: actions.RESET_STATE });
         },
         (error) => {
           dispatch({ type: actions.SET_ERROR, payload: error });

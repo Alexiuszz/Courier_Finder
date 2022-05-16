@@ -11,7 +11,7 @@ import { signout } from "../../redux/user/userActions";
 const MainNavbar = ({ acctDropDown, acctMenuDrop }) => {
 
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.user.token);
+  const loggedIn = useSelector((state) => state.user.loggedIn);
 
   let navigate = useNavigate();
 
@@ -34,7 +34,7 @@ const MainNavbar = ({ acctDropDown, acctMenuDrop }) => {
               className= {acctMenuDrop ? "dropList drop": "dropList noDrop"}
               // style={{ display: acctMenuDrop ? "flex" : "none" }}
             >
-              {!token ? (
+              {!loggedIn ? (
                 <>
                   <li>
                     <Link to={"/auth/signup"}>Register</Link>

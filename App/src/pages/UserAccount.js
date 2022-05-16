@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 function UserAccount() {
   const token = useSelector((state) => state.user.token);
   const email = useSelector((state) => state.user.user.email);
+
   if (!token) {
     return <h1>Loading...</h1>;
   } else {
