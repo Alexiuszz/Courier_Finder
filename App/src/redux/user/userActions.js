@@ -1,6 +1,6 @@
 import * as actions from "./userTypes";
 import { callApiEndpoint } from "../../api/ApiCall";
-import { SetCookie } from "../../auth_setup/Cookie";
+import { GetCookie } from "../../auth_setup/Cookie";
 
 //login thunk
 export const loginAction = (userData) => {
@@ -92,12 +92,6 @@ export const fetchUser = () => {
         (res) => {
           if (res.data._id !== null && res.data._id !== undefined) {
             dispatch(fetchUserSuccess(res.data));
-            dispatch(
-              setUserToken(
-                res.data._id + "@" + res.data.email,
-                new Date(new Date().getTime() + 1000 * 60 * 60)
-              )
-            );
           } else {
             return dispatch({
               type: actions.FETCH_USER_FAILURE,
@@ -113,19 +107,19 @@ export const fetchUser = () => {
   };
 };
 
-export const setUserToken = (newToken, expirationTime) => {
-  return (dispatch, getState) => {
-    localStorage.setItem(
-      "userData",
-      JSON.stringify({
-        token: newToken,
-        expirationTime: expirationTime.toISOString(),
-      })
-    );
-    dispatch(setToken(newToken));
-    dispatch(setExpirationTime(expirationTime));
-  };
-};
+// export const setUserToken = (newToken, expirationTime) => {
+//   return (dispatch, getState) => {
+//     localStorage.setItem(
+//       "userData",
+//       JSON.stringify({
+//         token: newToken,
+//         expirationTime: expirationTime.toISOString(),
+//       })
+//     );
+//     dispatch(setToken(newToken));
+//     dispatch(setExpirationTime(expirationTime));
+//   };
+// };
 
 export const signout = () => {
   return (dispatch, getState) => {
@@ -135,12 +129,8 @@ export const signout = () => {
 
 export const checkUserToken = (callback, fetch = true) => {
   return (dispatch, getState) => {
-    const storedData = JSON.parse(localStorage.getItem("userData"));
-    if (
-      storedData &&
-      storedData.token &&
-      new Date(storedData.expirationTime) > new Date()
-    ) {
+    const authCookie = GetCookie("auth-token");
+    if (authCookie && authCookie !== "") {
       if (getState().user !== {}) {
         callback();
         if (fetch) dispatch(fetchUser());
@@ -195,14 +185,3 @@ export const fetchUsersFailure = (error) => {
     payload: error,
   };
 };
-
-function setToken(newToken) {
-  return { type: actions.SET_USER_TOKEN, payload: newToken };
-}
-
-function setExpirationTime(expirationTime) {
-  return {
-    type: actions.SET_TOKEN_EXPIRATION_TIME,
-    payload: expirationTime,
-  };
-}
