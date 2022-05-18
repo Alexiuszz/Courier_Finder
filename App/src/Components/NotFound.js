@@ -1,9 +1,9 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function NotFound() {
-  let { wrongUrl } = useParams();
-  return <h1>NotFound {wrongUrl}</h1>;
+    let location = useLocation();
+  return <h1>NotFound {location.pathname}</h1>;
 }
 
 export default NotFound;

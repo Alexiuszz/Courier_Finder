@@ -31,6 +31,7 @@ function App() {
     >
       <MainNavbar acctDropDown={acctDropDown} acctMenuDrop={acctMenuDrop} />
       <Routes>
+      <Route path='*' element={<NotFound />} />
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<AuthLayout />}>
           <Route path="signup" element={<Courier />} />
@@ -54,13 +55,13 @@ function App() {
           }
         />
 
-        <Route path="404">
+        {/* <Route path="404">
           <Route path=":wrongUrl" element={<NotFound />} />
         </Route>
         <Route
           path="*"
           element={<Navigate to={`/404${location.pathname}`} />}
-        />
+        /> */}
       </Routes>
     </div>
   );
