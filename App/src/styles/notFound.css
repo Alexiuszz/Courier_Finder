@@ -1,0 +1,20 @@
+/* Not found */
+
+.notFound {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto
+}
+
+.notFound h1 {
+    font-size: 150px;
+    margin-bottom: 20px;
+}
+
+.notFound p,
+.notFound div,
+.notFound h1 {
+    max-width: 300px;
+    margin: 0 auto;
+}
