@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-function UserAccount() {
+function Profile() {
   const token = useSelector((state) => state.user.token);
   const email = useSelector((state) => state.user.user.email);
 
@@ -17,4 +17,4 @@ function UserAccount() {
   }
 }
 
-export default UserAccount;
+export default Profile;
