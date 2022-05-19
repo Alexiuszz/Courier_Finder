@@ -3,7 +3,6 @@ import { SelectInput, IconButton, Divider } from '../form_components/FormCompone
 import searchIcon from '../../Icons/Search_alt.svg'
 import mapIcon from '../../Icons/mapIcon.svg'
 import '../../styles/RightSideBar.css';
-import '../../styles/FormComponents.css';
 // import { states } from '../../data/states';
 
 

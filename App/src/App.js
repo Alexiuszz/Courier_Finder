@@ -1,12 +1,6 @@
 import React from "react";
 
-import {
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-  useParams,
-} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./styles/App.css";
 import MainNavbar from "./Components/Nav/MainNavbar";
@@ -24,14 +18,13 @@ function App() {
   const dispatch = useDispatch();
   const acctMenuDrop = useSelector((state) => state.user.acctMenuDrop);
 
-  let location = useLocation();
   return (
     <div
       onClick={acctMenuDrop ? () => dispatch(acctDropDown(true)) : undefined}
     >
       <MainNavbar acctDropDown={acctDropDown} acctMenuDrop={acctMenuDrop} />
       <Routes>
-      <Route path='*' element={<NotFound />} />
+        <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<AuthLayout />}>
           <Route path="signup" element={<Courier />} />
@@ -54,14 +47,6 @@ function App() {
             </PrivateRoute>
           }
         />
-
-        {/* <Route path="404">
-          <Route path=":wrongUrl" element={<NotFound />} />
-        </Route>
-        <Route
-          path="*"
-          element={<Navigate to={`/404${location.pathname}`} />}
-        /> */}
       </Routes>
     </div>
   );
