@@ -45,7 +45,7 @@ function Login() {
 
   let location = useLocation();
   if (token) {
-    return <Navigate to="/account" state={{ from: location }} />;
+    return <Navigate to="/profile" state={{ from: location }} />;
   }
   return (
     <div>

@@ -63,6 +63,28 @@ export const signupAction = (userData) => {
   };
 };
 
+export const submitProfile = (profile) => {
+  return (dispatch, getState) => {
+    dispatch({ type: actions.SUBMITTING_PROFILE, payload: true });
+    return callApiEndpoint(
+      "courier/set-profile",
+      "post",
+      profile,
+      (res) => {
+        res
+          ? dispatch({ type: actions.PROFILE_SUBMITTED, payload: res })
+          : dispatch({
+              type: actions.SUBMITTING_PROFILE_ERROR,
+              payload: "Error Submitting Profile",
+            });
+      },
+      (err) => {
+        dispatch({ type: actions.SUBMITTING_PROFILE_ERROR, payload: err });
+      }
+    );
+  };
+};
+
 export const acctDropDown = (isBody = true) => {
   return (dispatch, getState) => {
     isBody
@@ -77,33 +99,24 @@ export const acctDropDown = (isBody = true) => {
 export const fetchUser = () => {
   return (dispatch, getState) => {
     dispatch(fetchUserRequest());
-    const storedData = JSON.parse(localStorage.getItem("userData"));
-
-    //check if user token exists
-    if (
-      storedData &&
-      storedData.token &&
-      new Date(storedData.expirationTime) > new Date()
-    ) {
-      return callApiEndpoint(
-        "/getUser",
-        "get",
-        {},
-        (res) => {
-          if (res.data._id !== null && res.data._id !== undefined) {
-            dispatch(fetchUserSuccess(res.data));
-          } else {
-            return dispatch({
-              type: actions.FETCH_USER_FAILURE,
-              payload: "Invalid Request!",
-            });
-          }
-        },
-        (error) => {
-          dispatch({ type: actions.FETCH_USER_FAILURE, payload: error });
+    return callApiEndpoint(
+      "getCourier",
+      "get",
+      {},
+      (res) => {
+        if (res.data._id !== null && res.data._id !== undefined) {
+          dispatch(fetchUserSuccess(res.data));
+        } else {
+          return dispatch({
+            type: actions.FETCH_USER_FAILURE,
+            payload: "Invalid Request!",
+          });
         }
-      );
-    }
+      },
+      (error) => {
+        dispatch({ type: actions.FETCH_USER_FAILURE, payload: error });
+      }
+    );
   };
 };
 

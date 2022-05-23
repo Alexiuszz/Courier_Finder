@@ -1,62 +1,63 @@
 import axios from "axios";
 
-const axiosInstance = axios.create(
-    {
-        baseURL: 'http://localhost:3003',
-        headers: {
-            "Content-type": "application/json"
+const axiosInstance = axios.create({
+  baseURL: "http://localhost:3003",
+  headers: {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Access-Control-Allow-Origin": "http://localhost:3003/",
+  },
+});
+
+export function callApiEndpoint(
+  endpoint,
+  method,
+  data,
+  successCallback,
+  failedCallback,
+  alwaysCallback
+) {
+  axiosInstance({
+    url: `http://localhost:3003/${endpoint}`,
+    method: method,
+    data: data ? data : {},
+    responseType: "json",
+  })
+    .then((resp) => {
+      //console.log("Response: ");
+      //console.log(resp);
+      if (resp.data) {
+        if (resp.status > 400) {
+          throw new Error(resp.data.message);
         }
-    }
-);
-
-export function callApiEndpoint(endpoint, method, data, successCallback, failedCallback, alwaysCallback) {
-    axiosInstance({
-        url: `http://localhost:3003/${endpoint}`,
-        method: method,
-        data: (data) ? data : {},
-        responseType: "json",
+        successCallback(resp.data);
+      }
     })
-        .then(
-            (resp) => {
-                //console.log("Response: ");
-                //console.log(resp);
-                if (resp.data) {
-                    if (resp.status > 400) {
-                        throw new Error(resp.data.message);
-                    }
-                    successCallback(resp.data);
-                }
-            }
-        )
-        .catch(
-            (error) => {
-                //console.log("Axios Error: ");
-                //console.log(error);
-                //console.log("error.response: ", error.response);
-                let errMsg = "";
-                if (error) {
-                    // if (axios.isCancel(error))
-                    // {
-                    //     console.log("Request Cancelled. " + error.message);
+    .catch((error) => {
+      //console.log("Axios Error: ");
+      //console.log(error);
+      //console.log("error.response: ", error.response);
+      let errMsg = "";
+      if (error) {
+        // if (axios.isCancel(error))
+        // {
+        //     console.log("Request Cancelled. " + error.message);
 
-                    // } else
-                    if (error.response && error.response.data) {
-                        errMsg = error.response.data;
-                    } else {
-                        errMsg = error.message;
-                    }
-                }
-                
-                failedCallback((error.response) ? error.response.data : errMsg);
-            }
-        )
-        .then(
-            () => {
-                if (alwaysCallback) {
-                    alwaysCallback();
-                }
-            }
-        );
+        // } else
+        if (error.response && error.response.data) {
+          errMsg = error.response.data;
+        } else {
+          errMsg = error.message;
+        }
+      }
+
+      failedCallback(error.response ? error.response.data : errMsg);
+    })
+    .then(() => {
+      if (alwaysCallback) {
+        alwaysCallback();
+      }
+    });
 }
 
 // export const asyncApiCall = (

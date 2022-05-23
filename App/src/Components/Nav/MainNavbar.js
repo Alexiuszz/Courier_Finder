@@ -46,7 +46,7 @@ const MainNavbar = ({ acctDropDown, acctMenuDrop }) => {
               ) : (
                 <>
                   <li>
-                    <Link to={"/account"}>Profile</Link>
+                    <Link to={"/profile"}>Profile</Link>
                   </li>
                   <li
                     onClick={() => {

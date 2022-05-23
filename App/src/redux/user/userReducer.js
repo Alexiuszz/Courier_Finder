@@ -11,6 +11,7 @@ const initialState = {
   acctMenuDrop: false,
 
   user: {},
+  skipProfile: false,
   error: "",
   token: token,
   // tokenExpirationTime: null,
@@ -73,11 +74,13 @@ const AppReducer = (state = initialState, action) => {
       return {
         ...state,
         signingUp: false,
+        busy: true,
       };
     case actions.LOGIN_REQUEST:
       return {
         ...state,
         loggingIn: action.payload,
+        busy: true,
       };
     case actions.LOGIN_ERROR:
       return {
@@ -95,6 +98,40 @@ const AppReducer = (state = initialState, action) => {
         token: action.payload.token,
         user: {
           email: action.payload.email,
+          createdProfile: action.payload.createdProfile,
+        },
+      };
+
+    case actions.SUBMITTING_PROFILE:
+      return {
+        ...state,
+        busy: true,
+      };
+    case actions.PROFILE_SUBMITTED:
+      return {
+        ...state,
+        busy: false,
+        user: {
+          ...state.user,
+          createdProfile: action.payload,
+        },
+      };
+    case actions.SUBMITTING_PROFILE_ERROR:
+      return {
+        ...state,
+        busy: false,
+        error: action.payload,
+        user: {
+          ...state.user,
+          createdProfile: false,
+        },
+      };
+    case actions.SKIP_PROFILE:
+      return {
+        ...state,
+        skipProfile: true,
+        user: {
+          ...state.user,
         },
       };
     case actions.SET_USER:
