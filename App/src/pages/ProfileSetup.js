@@ -13,7 +13,7 @@ import { SKIP_PROFILE } from "../redux/user/userTypes";
 import { Navigate, useLocation } from "react-router-dom";
 
 function ProfileSetup() {
-  const [logo, setLogo] = React.useState({});
+  const [logo, setLogo] = React.useState(null);
   const [fileName, setFileName] = React.useState("Choose Logo");
   const [description, setDescription] = React.useState("");
 
@@ -26,10 +26,7 @@ function ProfileSetup() {
     if (picture !== undefined) {
       setFileName(picture.name);
       var src = URL.createObjectURL(picture);
-      setLogo({
-        picture: picture,
-        src: src,
-      });
+      setLogo(src);
     }
   };
 
@@ -66,7 +63,7 @@ function ProfileSetup() {
           <div className="logoSelect">
             <div className="logo">
               <img
-                src={logo.src !== undefined ? logo.src : noLogo}
+                src={logo !== undefined && logo !==null ? logo : noLogo}
                 alt="logo"
                 className="logoImg"
               />

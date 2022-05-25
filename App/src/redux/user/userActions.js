@@ -100,12 +100,12 @@ export const fetchUser = () => {
   return (dispatch, getState) => {
     dispatch(fetchUserRequest());
     return callApiEndpoint(
-      "getCourier",
+      "courier/getCourier",
       "get",
       {},
       (res) => {
-        if (res.data._id !== null && res.data._id !== undefined) {
-          dispatch(fetchUserSuccess(res.data));
+        if (res._id !== null && res._id !== undefined) {
+          dispatch(fetchUserSuccess(res));
         } else {
           return dispatch({
             type: actions.FETCH_USER_FAILURE,

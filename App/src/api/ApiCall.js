@@ -5,7 +5,7 @@ const axiosInstance = axios.create({
   headers: {
     "Content-Type": "application/json",
     "Accept": "application/json",
-    "Access-Control-Allow-Origin": "http://localhost:3003/",
+    "Access-Control-Allow-Origin": "http://localhost:3002/",
   },
 });
 
@@ -21,7 +21,8 @@ export function callApiEndpoint(
     url: `http://localhost:3003/${endpoint}`,
     method: method,
     data: data ? data : {},
-    responseType: "json",
+    responseType: "json",    
+    withCredentials: "include"
   })
     .then((resp) => {
       //console.log("Response: ");
