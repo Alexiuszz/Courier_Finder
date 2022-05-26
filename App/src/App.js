@@ -26,10 +26,10 @@ function App() {
       <Routes>
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />
-        <Route path="/auth" element={<AuthLayout />}>
+        {/* <Route path="/auth" element={<AuthLayout />}> */}
           <Route path="signup" element={<Courier />} />
           <Route path="signin" element={<Login />} />
-        </Route>
+        {/* </Route> */}
 
         <Route
           path="/profile"

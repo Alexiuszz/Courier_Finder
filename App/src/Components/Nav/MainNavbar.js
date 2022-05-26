@@ -37,10 +37,10 @@ const MainNavbar = ({ acctDropDown, acctMenuDrop }) => {
               {!loggedIn ? (
                 <>
                   <li>
-                    <Link to={"/auth/signup"}>Register</Link>
+                    <Link to={"/signup"}>Register</Link>
                   </li>
                   <li>
-                    <Link to={"/auth/signin"}>Sign in</Link>
+                    <Link to={"/signin"}>Sign in</Link>
                   </li>
                 </>
               ) : (

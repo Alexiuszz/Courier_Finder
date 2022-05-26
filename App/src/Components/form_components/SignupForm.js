@@ -154,7 +154,7 @@ function SignupForm(props) {
                 text='Sign up'
             />
             <div className="loginLink">
-                <p>Already have an account? <Link to='/auth/signin'> Sign in</Link></p>
+                <p>Already have an account? <Link to='/signin'> Sign in</Link></p>
             </div>
         </form >
     )
