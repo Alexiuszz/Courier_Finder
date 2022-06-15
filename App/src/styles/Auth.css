@@ -84,11 +84,12 @@
 
 /************ Sign up **************/
 
-.signupContainer {
-    max-width: 1364px;
+.wCoolBG {
+    max-width: 1594px;
     text-align: center;
     margin: 0 auto;
     background-image: url('../graphics/SIgnupBG.png');
+    background-size: cover;
     padding-top: 40px;
     padding-bottom: 50px;
 }

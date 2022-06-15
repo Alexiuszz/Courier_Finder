@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import '../../styles/footer.css'
 import { Divider, InputwButton } from "../form_components/FormComponents";
 import LinkList from "../LinkList";
+import Logo from "../../Icons/Logo.png";
 
 export default function Footer() {
     const [val, setVal] = useState('');
@@ -51,6 +52,7 @@ export default function Footer() {
             <div className="footerBottom">
                 <div className="footerBtmItems">
                     <h1>Courier Finder</h1>
+                    <img src={Logo} alt="Logo" />
                     <p>
                         MarketPlace Copyright &copy; 2021. All Rights Reserved.
                     </p>

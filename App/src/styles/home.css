@@ -1,17 +1,238 @@
-.homeContent {
-    max-width: 1364px;
-}
-
 .homeContainer a {
     text-decoration: none;
 }
 
 .home {
-    max-width: 1364px;
     margin: 0 auto;
     position: relative;
+    max-width: 1520px;
 }
 
 .homeContainer {
     z-index: 1;
+}
+
+.homeInfo {
+    margin-top: 40px;
+    margin-left: 65px;
+    height: 700px;
+    padding-top: 40px;
+    padding-left: 95px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+.homeInfo .infoBG {
+    position: absolute;
+    left: -10px;
+    z-index: -5;
+    /* max-width: 80%; */
+    width: 100%;
+}
+
+.homeInfo .infoGraphic {
+    position: absolute;
+    top: 10px;
+    right: 0%;
+    height: 480px;
+    margin-right: 90px;
+}
+
+.banner {
+    font-size: 80px;
+    width: 400px;
+    height: 300px;
+    font-family: "Playfar Display";
+    font-weight: 900;
+    color: #3c1f6b;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.infoContent {
+    margin: 30px 0 0 50px;
+    width: 1000px;
+}
+
+.banner p {
+    width: 150px;
+    margin-bottom: 40px;
+}
+
+.banner img {
+    height: 90px;
+    margin-bottom: 50px;
+}
+
+.details {
+    font-size: 12px;
+    line-height: 18px;
+    width: 400px;
+    color: #00000086;
+}
+
+.register:hover {
+    box-shadow: 0 2px 8px 0 #00000033;
+    background-color: #b5c9ff;
+}
+
+.register {
+    background-size: cover;
+    color: #fff;
+    justify-content: center;
+    margin-right: 50px;
+    outline: none;
+    background-color: #8caafe;
+    box-shadow: 0 2px 3px 0 #00000033;
+}
+
+.learn {
+    background-image: url("../graphics/ButtonBg2WithRightArrow.png");
+    background-size: cover;
+    padding-left: 5px;
+}
+
+.learn:hover {
+    background-image: url("../graphics/BtnBGwithArrowHover.png");
+}
+
+.infoBtns {
+    display: flex;
+    margin-top: 50px;
+}
+
+.orderContainer {
+    margin-top: 30px;
+    background: url("../graphics/OrderBg.png");
+    height: 250px;
+    background-size: cover;
+}
+
+.orderItems {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 700px;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.orderTxt {
+    width: 300px;
+}
+
+.orderTxt h1 {
+    color: #343C86;
+}
+
+.orderTxt p {
+    color: #949494;
+}
+
+.RequestBtn {
+    justify-content: center;
+    background-color: #fff;
+}
+
+.detailsContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 89px;
+    padding-right: 82.5px;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin: 0 auto;
+}
+
+.detailsImg {
+    height: 317px;
+}
+
+.detailsHead {
+    font-family: "Playfar Display";
+    font-weight: 900;
+    margin-bottom: 0;
+    color: #3c1f6b;
+    font-size: 45px;
+}
+
+.detailsSubTxt {
+    width: 480px;
+    font-size: 12px;
+    color: #180558a6;
+    line-height: 18px;
+    margin-top: 30px;
+}
+
+.mediaCard {
+    height: 350px;
+    width: 234px;
+    background-color: #ffff;
+    box-shadow: 0 8px 8px 0 #00000033;
+    border-radius: 40px 0 40px 0;
+    overflow: hidden;
+}
+
+.mediaImg {
+    overflow: hidden;
+    height: 60%;
+    text-align: center;
+    padding-top: 28px;
+    box-sizing: border-box;
+}
+
+.mediaTitle {
+    font-family: 'Roboto', 'Playfar Display';
+    font-weight: 900;
+    margin: 0;
+    color: #513486;
+    font-size: 24px;
+    text-align: center;
+}
+
+.mediaContent {
+    font-family: 'Roboto', 'Playfar Display';
+    font-size: 12px;
+    width: 192px;
+    margin-left: 21px;
+    margin-right: 7px;
+    margin-top: 20px;
+    height: 40px;
+}
+
+.mediaImg img {
+    height: 90%;
+}
+
+.mediaCards {
+    width: 826px;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 96px;
+}
+
+.mediaCards .mediaAction {
+    float: right;
+    border: none;
+    width: auto;
+    margin-right: 14px;
+    color: #4d1471c7;
+    box-shadow: none;
+    background: none;
+}
+
+.mediaAction:hover {
+    box-shadow: 0 2px 8px 0 #00000033;
+}
+
+.cardContainer {
+    background-image: url('../graphics/CardsBG.png');
+    height: 481px;
+    display: flex;
+    align-items: center;
+    background-size: cover;
 }

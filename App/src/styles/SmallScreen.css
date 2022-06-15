@@ -1,0 +1,18 @@
+/* Nav */
+
+@media screen and (max-width: 760px) {
+    .navContainer {
+        height: 90px;
+    }
+    .navItems .group1,
+    .navItems .navLinkList>a {
+        display: none;
+    }
+    .navLinkList {
+        width: 60vw;
+        justify-content: flex-end;
+    }
+    .menuButton {
+        display: flex;
+    }
+}

@@ -3,6 +3,7 @@ import UserLogin from "../../Components/form_components/LoginForm";
 import { useLocation, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../../redux/user/userActions";
+import AuthWrapper from "../../Components/wrappers/AuthWrapper";
 
 function Login() {
   const [user, setUser] = useReducer(
@@ -48,7 +49,7 @@ function Login() {
     return <Navigate to="/profile" state={{ from: location }} />;
   }
   return (
-    <div>
+    <AuthWrapper>
       <UserLogin
         user={user}
         reqEmailError={reqEmailError}
@@ -58,7 +59,7 @@ function Login() {
         handleSubmit={handleSubmit}
         errorTag={errorTag}
       />
-    </div>
+    </AuthWrapper>
   );
 }
 

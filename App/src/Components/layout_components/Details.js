@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../styles/Details.css';
 import lady from '../../graphics/lady_phone.png';
 
 function Details() {

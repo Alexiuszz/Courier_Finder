@@ -1,8 +1,9 @@
 import React from 'react';
+import AuthWrapper from '../../Components/wrappers/AuthWrapper';
 
 export function Signup({children}) {
     return (
-        <div className="signupContainer">
+        <AuthWrapper>
             <div className="signupTitle">
                 <h1>Welcome to the Courier Network</h1>
                 <p>Sign up as a Courier or a Merchant to get started</p>
@@ -12,6 +13,6 @@ export function Signup({children}) {
                 {/* <div />
                 <Merchant /> */}
             </div>
-        </div>
+        </AuthWrapper>
     );
 }
