@@ -13,10 +13,7 @@
 }
 
 .homeInfo {
-    margin-top: 40px;
-    margin-left: 65px;
     height: 700px;
-    padding-top: 40px;
     padding-left: 95px;
     box-sizing: border-box;
     position: relative;
@@ -25,10 +22,10 @@
 
 .homeInfo .infoBG {
     position: absolute;
-    left: -10px;
+    left: -5px;
     z-index: -5;
     /* max-width: 80%; */
-    width: 100%;
+    width: 1520px;
 }
 
 .homeInfo .infoGraphic {
@@ -67,7 +64,7 @@
 }
 
 .details {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 18px;
     width: 400px;
     color: #00000086;

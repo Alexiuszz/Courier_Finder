@@ -216,7 +216,7 @@ ul.dropList a:hover {
     width: 100%;
     justify-content: space-around;
     align-items: center;
-    z-index: 1;
+    z-index: 2;
 }
 
 .dropDownList.dropOpen {
@@ -229,6 +229,7 @@ ul.dropList a:hover {
     opacity: 0;
     height: 0;
     font-size: 0;
+    z-index: -1;
 }
 
 .dropDownList a {
