@@ -9,14 +9,9 @@ import plus from '../Icons/plus.svg'
 
 function MapDialog({ showDialog, close, onAddressSelect, cAddress, addAddress }) {
     const mapContainerStyle = {
-        width: '50vw',
+        width: '70vw',
         height: '50vh'
     };
-    const center = {
-        lat: 9.0820,
-        lng: 8.6753,
-    }
-
     const [mark, setMark] = React.useState({});
 
     const changeMark = (newMark) => {
@@ -33,7 +28,7 @@ function MapDialog({ showDialog, close, onAddressSelect, cAddress, addAddress })
                 }}
             >
                 <DialogContent
-                    style={{ boxShadow: "0px 10px 50px hsla(0, 0%, 0%, 0.33)", height: "58vh", width: "50vw" }}
+                    style={{ boxShadow: "0px 10px 50px hsla(0, 0%, 0%, 0.33)", height: "58vh", width: "80vw" }}
                 >
                     <div>
                         <Gmap mapContainerStyle={mapContainerStyle} onAddressSelect={onAddressSelect} cAddress={cAddress} mark={mark} changeMark={changeMark} />
@@ -54,4 +49,4 @@ function MapDialog({ showDialog, close, onAddressSelect, cAddress, addAddress })
     );
 }
 
-export default MapDialog
+export default MapDialog;

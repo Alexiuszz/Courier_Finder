@@ -72,7 +72,10 @@
     .signup .authButton,
     .signup .authInput,
     .addresses {
-        width: 65%;
+        width: 80%;
+    }
+    .signupTitle {
+        width: 95vw;
     }
 }
 
