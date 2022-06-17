@@ -7,8 +7,11 @@
     .navItems .navLinkList>a {
         display: none;
     }
+    .navIcon {
+        height: 40px;
+    }
     .navLinkList {
-        width: 60vw;
+        width: 50vw;
         justify-content: flex-end;
     }
     .menuButton {
