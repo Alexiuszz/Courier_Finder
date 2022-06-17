@@ -1,0 +1,131 @@
+@media screen and (max-width: 760px) {
+    /* Nav */
+    .navContainer {
+        height: 90px;
+    }
+    .navItems .group1,
+    .navItems .navLinkList>a {
+        display: none;
+    }
+    .navLinkList {
+        width: 60vw;
+        justify-content: flex-end;
+    }
+    .menuButton {
+        display: flex;
+    }
+    /*Home*/
+    .homeContainer {
+        overflow: hidden;
+    }
+    .banner {
+        justify-content: flex-start;
+        font-size: 70px;
+        width: auto;
+        height: auto;
+    }
+    .banner p {
+        margin-top: 40px;
+    }
+    .banner img {
+        height: 60px;
+        margin-left: 90px;
+    }
+    .cardContainer {
+        height: auto;
+    }
+    .mediaCard {
+        margin-bottom: 40px;
+    }
+    .mediaCards {
+        flex-direction: column;
+        align-items: center;
+    }
+    /* footer */
+    .footerBody {
+        flex-direction: column;
+    }
+    .footerTexts div {
+        width: 20vw;
+    }
+    .footerTexts {
+        padding-left: 10px;
+        width: 100vw;
+    }
+    .footerBtmItems {
+        flex-direction: column;
+        width: 90vw;
+        align-items: center;
+    }
+    .footerBtmItems p {
+        align-self: normal;
+        text-align: center;
+    }
+    /* auth forms */
+    .authForm {
+        width: 85vw;
+    }
+    .authInput {
+        width: 80%;
+    }
+    .signup .loginLink,
+    .signup .authButton,
+    .signup .authInput,
+    .addresses {
+        width: 65%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .homeInfo {
+        padding-left: 5vw;
+        margin-top: 20px;
+        height: auto;
+    }
+    .infoContent {
+        margin: 10px auto;
+        width: 85vw;
+        margin-left: 10vw;
+    }
+    .infoContent .details {
+        width: 90%;
+    }
+    .infoBtns {
+        display: flex;
+        margin-top: 30px;
+    }
+    .homeInfo .infoGraphic {
+        position: static;
+        height: 480px;
+        margin: 100px auto 0 auto;
+    }
+    .homeInfo .infoBG {
+        width: 1300px;
+    }
+    .orderContainer {
+        margin-top: 0;
+    }
+    .orderItems {
+        width: 90vw;
+    }
+    .detailsContainer {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .detailsSubTxt {
+        width: 90vw;
+    }
+    .detailsHead {
+        text-align: center;
+        font-size: 35px;
+    }
+}
+
+@media screen and (min-width: 760px) {
+    .dropDownList.dropDownList.dropClose {
+        display: none;
+    }
+    .dropDownList.dropDownList.dropOpen {
+        display: none;
+    }
+}

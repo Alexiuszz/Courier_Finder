@@ -7,27 +7,54 @@ import {
   IconButton,
   TextArea,
 } from "../Components/form_components/FormComponents";
+import { useDispatch, useSelector } from "react-redux";
+import { submitProfile } from "../redux/user/userActions";
+import { SKIP_PROFILE } from "../redux/user/userTypes";
+import { Navigate, useLocation } from "react-router-dom";
 
 function ProfileSetup() {
-  const [logo, setLogo] = React.useState({});
+  const [logo, setLogo] = React.useState(null);
   const [fileName, setFileName] = React.useState("Choose Logo");
   const [description, setDescription] = React.useState("");
+
+  const dispatch = useDispatch();
+  const email = useSelector((state) => state.user.user.email);
+  const createdProfile = useSelector((state) => state.user.user.createdProfile);
 
   const handlePictureSelected = (e) => {
     var picture = e.target.files[0];
     if (picture !== undefined) {
       setFileName(picture.name);
       var src = URL.createObjectURL(picture);
-      setLogo({
-        picture: picture,
-        src: src,
-      });
+      setLogo(src);
     }
   };
 
   const handleChange = ({ value }) => {
     setDescription(value);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    let profile = {
+      logo,
+      email: email,
+      description: description
+    };
+    dispatch(submitProfile(profile));
+  };
+
+  const handleSkip = (e) => {
+    e.preventDefault();
+    dispatch({ type: SKIP_PROFILE });
+    window.location.href = "http://localhost:3002/profile";
+  };
+
+  let location = useLocation();
+  if (createdProfile) {
+    return <Navigate to="/profile" state={{ from: location }} />;
+  }
   return (
     <Signup>
       <div className="profileSetupWrapper">
@@ -36,7 +63,7 @@ function ProfileSetup() {
           <div className="logoSelect">
             <div className="logo">
               <img
-                src={logo.src !== undefined ? logo.src : noLogo}
+                src={logo !== undefined && logo !==null ? logo : noLogo}
                 alt="logo"
                 className="logoImg"
               />
@@ -48,7 +75,7 @@ function ProfileSetup() {
               id="file"
               className="inputFile"
             />
-            <label for="file">
+            <label htmlFor="file">
               {fileName}
               <img src={imgSelect} alt="ilogo select" />
             </label>
@@ -68,15 +95,16 @@ function ProfileSetup() {
             {/* <IconButton text="Submit" handleSubmit={f => f} className='submitDescription' /> */}
           </div>
         </div>
+
         <div className="setupBtns">
           <IconButton
             text="Skip &gt;&gt;"
-            handleSubmit={(f) => f}
+            handleSubmit={handleSkip}
             className="skipBtn"
           />
           <IconButton
             text="Continue"
-            handleSubmit={(f) => f}
+            handleSubmit={handleSubmit}
             className="continueBtn"
           />
         </div>

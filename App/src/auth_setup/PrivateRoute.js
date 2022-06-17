@@ -9,7 +9,7 @@ export default function PrivateRoute({ children, ...rest }) {
   let location = useLocation();
 
   if (!loggedIn) {
-    return <Navigate to="/auth/signin" state={{ from: location }} />;
+    return <Navigate to="/signin" state={{ from: location }} />;
   }
 
   return children

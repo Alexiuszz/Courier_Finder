@@ -13,6 +13,8 @@ import ProfileSetup from "./pages/ProfileSetup";
 import { Courier } from "./pages/Auth-pages/Courier";
 import { acctDropDown } from "./redux/user/userActions";
 import NotFound from "./Components/NotFound";
+import "./styles/SmallScreen.css";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -26,7 +28,7 @@ function App() {
       <Routes>
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />
-        <Route path="/auth" element={<AuthLayout />}>
+        <Route path="/" element={<AuthLayout />}>
           <Route path="signup" element={<Courier />} />
           <Route path="signin" element={<Login />} />
         </Route>

@@ -1,16 +1,20 @@
 .navContainer {
-    height: 148px;
-    background: linear-gradient(135deg, #fff, #ffffff, #eedffac4);
+    height: 138px;
+    background: linear-gradient(135deg, #fff, #dfe5fa);
     z-index: -1;
 }
 
 .navItems {
     display: grid;
-    grid-template-columns: 0.5fr 3fr 1.5fr;
+    grid-template-columns: 0.5fr 2fr 1.5fr;
     align-items: center;
     height: 100%;
     max-width: 1364px;
     margin: 0 auto;
+}
+
+.navItems a {
+    text-decoration: none;
 }
 
 .navLinkList {
@@ -21,7 +25,8 @@
 }
 
 .navIcon {
-    font-size: 20px;
+    height: 60px;
+    margin-left: 2.5vw;
 }
 
 .navContainer .navLink:hover {
@@ -32,19 +37,24 @@
 }
 
 .navContainer .navLink {
-    margin: 0 2em;
+    margin: 0 2vw;
     text-decoration: none;
     color: #26003b;
     font-weight: 500;
     letter-spacing: 1px;
     z-index: 100;
-    padding: 3px 8px;
+    padding: 3px 0px;
     font-size: 17px;
     cursor: pointer;
 }
 
-.group1 .navLink {
-    margin: 0 4em;
+.navLink svg {
+    margin-right: 5px;
+    color: #5264a3;
+}
+
+.navLink[sel="acct"] {
+    width: 115px;
 }
 
 .topDesign {
@@ -59,13 +69,39 @@
     font-size: 15px;
 }
 
+.navLink .rotate {
+    animation: rotate 0.2s ease 0s 1 normal forwards;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
+
+.navLink .noRotate {
+    animation: noRotate 0.2s ease 0s 1 normal forwards;
+}
+
+@keyframes noRotate {
+    from {
+        transform: rotate(180deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
 ul.dropList {
     position: absolute;
     flex-direction: column;
     list-style: none;
     background-color: #ffffff;
     width: 130px;
-    border-radius: 10px;
+    border-radius: 0 0 10px 10px;
     box-shadow: 0 2px 15px 0 #00000033;
 }
 
@@ -113,4 +149,90 @@ ul.dropList a:hover {
     font-weight: 500;
     color: #8300c9;
     border-radius: 5px;
+}
+
+
+/*************** Menu Button ***************/
+
+.menuButton {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    height: 17px;
+    width: 25px;
+    position: absolute;
+    right: 5vw;
+}
+
+.menuButton div {
+    height: 15%;
+    transition: all 0.3s ease-in-out;
+    border-radius: 40px;
+}
+
+.menuButton #l1 {
+    width: 100%;
+}
+
+.menuButton #l2 {
+    width: 50%;
+}
+
+.menuButton #l3 {
+    width: 30%;
+}
+
+.menuButton.active {
+    transition: all 0.2s ease-in-out;
+}
+
+.menuButton.active div {
+    transition: all 0.2s ease-in-out;
+}
+
+.menuButton.active #l1 {
+    transition-delay: 0.2s;
+    transform: translateY(8px) rotate(135deg);
+    width: 80%;
+}
+
+.menuButton.active #l3 {
+    transform: translateY(-6px) rotate(-135deg);
+    width: 80%;
+    transition-delay: 0.2s;
+}
+
+.menuButton.active #l2 {
+    width: 0;
+}
+
+.dropDownList {
+    flex-direction: column;
+    position: absolute;
+    transition: all 0.3s ease-in-out;
+    background-color: #fff;
+    height: calc(100vh - 90px);
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 2;
+}
+
+.dropDownList.dropOpen {
+    display: flex;
+    opacity: 1;
+}
+
+.dropDownList.dropClose {
+    display: flex;
+    opacity: 0;
+    height: 0;
+    font-size: 0;
+    z-index: -1;
+}
+
+.dropDownList a {
+    text-decoration: none;
+    font-size: 10;
 }

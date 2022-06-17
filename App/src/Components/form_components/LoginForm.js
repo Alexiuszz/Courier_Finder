@@ -18,7 +18,7 @@ function LoginForm(props) {
             </div>
             <IconButton handleSubmit={props.handleSubmit} className='authButton' text='Sign in' />
             <div className="loginLink">
-                <p>Don't have an account? <Link to='/auth/signup'> Sign up</Link></p>
+                <p>Don't have an account? <Link to='/signup'> Sign up</Link></p>
             </div>
         </div>
     )

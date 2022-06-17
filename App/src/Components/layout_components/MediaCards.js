@@ -1,7 +1,6 @@
 import React from 'react';
 import { cards } from '../../data/cards';
 import { MediaCard } from './MediaCard';
-import '../../styles/mediaCards.css'
 
 export default function MediaCards() {
     const cardData = cards()

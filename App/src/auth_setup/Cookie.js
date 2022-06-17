@@ -1,6 +1,6 @@
 export const SetCookie = (name, value, path, exp) => {
   if (typeof document === "undefined") return false;
-  document.cookie = `${name}=${value}; expires=${exp}; Secure`;
+  document.cookie = `${name}=${value}; expires=${exp}`;
 };
 
 export const GetCookie = (name) => {
