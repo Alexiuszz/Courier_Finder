@@ -7,7 +7,6 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import {
   solid,
   regular,
-  brands,
 } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";

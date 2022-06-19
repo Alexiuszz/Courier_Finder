@@ -68,7 +68,7 @@ function Gmap({
                 (error) => {
                     console.error(error);
                 }
-            );
+            );// eslint-disable-next-line
         }, [],
     )
 

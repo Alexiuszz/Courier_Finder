@@ -1,5 +1,5 @@
 {
-    "name": "auth-system",
+    "name": "courier-finder",
     "version": "0.1.0",
     "proxy": "http://localhost:3003/",
     "private": true,
