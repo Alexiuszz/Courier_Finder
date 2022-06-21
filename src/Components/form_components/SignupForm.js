@@ -9,11 +9,12 @@ import marker from '../../Icons/Spotlight Marker.svg';
 import plus from '../../Icons/plus.svg';
 import MapDialog from '../MapDialog';
 
+import * as keys from '../../data/Key';
 const libraries = ["places"];
 
 function SignupForm(props) {
     const { isLoaded, loadError } = useLoadScript({
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+        googleMapsApiKey: keys.REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries,
     });
 

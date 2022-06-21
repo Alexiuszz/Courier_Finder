@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3003",
+  baseURL: "https://emissar-server.herokuapp.com",
   headers: {
     "Content-Type": "application/json",
     "Accept": "application/json",
-    "Access-Control-Allow-Origin": "http://localhost:3002/",
+    "Access-Control-Allow-Origin": "https://courier-finder.netlify.app/",
   },
 });
 

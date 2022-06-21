@@ -37,7 +37,8 @@ function MapSearch({ onAddressSelect, handleChange, mark = null, changeMark=f=>f
     React.useEffect(() => {
         if (mark !== null && mark.address !== null) {
             updateSearch();
-        }// eslint-disable-next-line
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mark])
 
     return (

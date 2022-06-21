@@ -12,6 +12,8 @@ import yourLocation from "../../Icons/YourLocation.svg";
 import '../../styles/mapStyles.css';
 import { AddressInput } from "../form_components/FormComponents";
 
+import * as keys from '../../data/Key';
+
 const libraries = ["places"];
 const center = {
     lat: 9.0820,
@@ -52,7 +54,7 @@ function Gmap({
 ) {
 
     const mapRef = React.useRef();
-    Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
+    Geocode.setApiKey(keys.REACT_APP_GOOGLE_MAPS_API_KEY);
 
     const mapClick = React.useCallback(
         async event => {
@@ -68,7 +70,8 @@ function Gmap({
                 (error) => {
                     console.error(error);
                 }
-            );// eslint-disable-next-line
+            );
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [],
     )
 
@@ -76,7 +79,7 @@ function Gmap({
         mapRef.current = map;
     }, []);
     const { isLoaded, loadError } = useLoadScript({
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+        googleMapsApiKey: keys.REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries,
     });
     const panTo = React.useCallback(({ lat, lng }) => {
