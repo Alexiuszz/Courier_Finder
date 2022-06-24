@@ -1,7 +1,7 @@
 {
     "name": "courier-finder",
     "version": "0.1.0",
-    "proxy": "http://localhost:3003/",
+    "proxy": "https://emissar-server.herokuapp.com",
     "private": true,
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^6.1.1",
