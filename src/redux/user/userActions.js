@@ -1,6 +1,7 @@
 import * as actions from "./userTypes";
 import { callApiEndpoint } from "../../api/ApiCall";
 import { GetCookie } from "../../auth_setup/Cookie";
+import * as keys from '../../api/config';
 
 //login thunk
 export const loginAction = (userData) => {
@@ -53,7 +54,7 @@ export const signupAction = (userData) => {
           return;
         } else {
           dispatch({ type: actions.SIGNUP_SUCCESSFUL, payload: res });
-          window.location.href = "http://localhost:3002/auth/signin";
+          window.location.href = `${process.env.REACT_APP_BASE_URL || keys.REACT_APP_BASE_URL}/#/profile`;
         }
       },
       (error) => {

@@ -12,6 +12,8 @@ import { submitProfile } from "../redux/user/userActions";
 import { SKIP_PROFILE } from "../redux/user/userTypes";
 import { Navigate, useLocation } from "react-router-dom";
 
+import * as keys from "../api/config";
+
 function ProfileSetup() {
   const [logo, setLogo] = React.useState(null);
   const [fileName, setFileName] = React.useState("Choose Logo");
@@ -48,7 +50,7 @@ function ProfileSetup() {
   const handleSkip = (e) => {
     e.preventDefault();
     dispatch({ type: SKIP_PROFILE });
-    window.location.href = "http://localhost:3002/profile";
+    window.location.href = `${process.env.REACT_APP_BASE_URL || keys.REACT_APP_BASE_URL}/#/profile`;
   };
 
   let location = useLocation();

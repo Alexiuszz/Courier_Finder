@@ -121,7 +121,7 @@ function SignupForm(props) {
                     >
                         <img src={plus} alt="Plus" />
                     </button>
-                </div>
+                </div> 
                 {!props.emptyField ? null : props.reqAddressError && props.errorTag()}
             </div>
 

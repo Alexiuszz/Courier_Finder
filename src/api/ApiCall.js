@@ -1,11 +1,13 @@
 import axios from "axios";
+import * as keys from "./config";
 
 const axiosInstance = axios.create({
-  baseURL: "https://emissar-server.herokuapp.com",
+  baseURL: process.env.REACT_APP_API_URL || keys.REACT_APP_API_URL,
   headers: {
     "Content-Type": "application/json",
-    "Accept": "application/json",
-    "Access-Control-Allow-Origin": "https://courier-finder.netlify.app/",
+    Accept: "application/json",
+    "Access-Control-Allow-Origin":
+      process.env.REACT_APP_BASE_URL || keys.REACT_APP_BASE_URL,
   },
 });
 
@@ -18,11 +20,11 @@ export function callApiEndpoint(
   alwaysCallback
 ) {
   axiosInstance({
-    url: `http://localhost:3003/${endpoint}`,
+    url: `/${endpoint}`,
     method: method,
     data: data ? data : {},
-    responseType: "json",    
-    withCredentials: "include"
+    responseType: "json",
+    withCredentials: "include",
   })
     .then((resp) => {
       //console.log("Response: ");
