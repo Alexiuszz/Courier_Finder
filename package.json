@@ -1,5 +1,5 @@
 {
-    "name": "courier-finder",
+    "name": "emissar",
     "version": "0.1.0",
     "proxy": "https://emissar-server.herokuapp.com",
     "private": true,
