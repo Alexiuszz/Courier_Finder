@@ -13,6 +13,7 @@ import '../../styles/mapStyles.css';
 import { AddressInput } from "../form_components/FormComponents";
 
 import * as keys from '../../data/Key';
+import Loader from "../Loader";
 
 const libraries = ["places"];
 const center = {
@@ -89,7 +90,7 @@ function Gmap({
 
 
     if (loadError) return "Error loading maps";
-    if (!isLoaded) return "Loading Maps";
+    if (!isLoaded) return <Loader loading={isLoaded}/>;
 
 
     return (

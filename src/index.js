@@ -5,13 +5,13 @@ import App from "./App";
 import { HashRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-
 import {store, persistor} from "./redux/store";
+import Loader from "./Components/Loader";
 
 ReactDOM.render(
   <HashRouter>
     <Provider store={store}>
-      <PersistGate loading={<h1>Loading...</h1>} persistor={persistor}>
+      <PersistGate loading={<Loader color='black' loading={true} />} persistor={persistor}>
         <App />
       </PersistGate>
     </Provider>

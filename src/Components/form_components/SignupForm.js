@@ -10,6 +10,7 @@ import plus from '../../Icons/plus.svg';
 import MapDialog from '../MapDialog';
 
 import * as keys from '../../data/Key';
+import Loader from '../Loader';
 const libraries = ["places"];
 
 function SignupForm(props) {
@@ -24,7 +25,7 @@ function SignupForm(props) {
 
 
     if (loadError) return "Error loading maps";
-    if (!isLoaded) return "Loading Maps";
+    if (!isLoaded) return <Loader loading={isLoaded} />;
 
     return (
         <form className='authForm signupForm'>

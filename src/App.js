@@ -14,17 +14,20 @@ import { Courier } from "./pages/Auth-pages/Courier";
 import { acctDropDown } from "./redux/user/userActions";
 import NotFound from "./Components/NotFound";
 import "./styles/SmallScreen.css";
+import Loader from "./Components/Loader";
 
 
 function App() {
   const dispatch = useDispatch();
   const acctMenuDrop = useSelector((state) => state.user.acctMenuDrop);
+  const busy = useSelector(state => state.user.busy)
 
   return (
     <div
       onClick={acctMenuDrop ? () => dispatch(acctDropDown(true)) : undefined}
     >
       <MainNavbar acctDropDown={acctDropDown} acctMenuDrop={acctMenuDrop} />
+      {busy && <Loader color='black' loading={busy}/>}
       <Routes>
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />

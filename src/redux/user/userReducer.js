@@ -63,6 +63,7 @@ const AppReducer = (state = initialState, action) => {
       return {
         ...state,
         signupError: true,
+        busy: false,
         error: action.payload,
       };
     case actions.SIGNUP_SUCCESSFUL:
@@ -70,6 +71,7 @@ const AppReducer = (state = initialState, action) => {
         ...state,
         signupError: false,
         signedUp: true,
+        busy: false,
         error: "",
       };
     case actions.SIGNUP_REQUEST:
@@ -86,7 +88,8 @@ const AppReducer = (state = initialState, action) => {
       };
     case actions.LOGIN_ERROR:
       return {
-        ...state,
+        ...state,        
+        busy: false,
         loggedIn: false,
         loggingInError: false,
         error: action.payload,
@@ -96,6 +99,7 @@ const AppReducer = (state = initialState, action) => {
         ...state,
         loggedIn: true,
         loggingInError: false,
+        busy: false,
         error: "",
         token: action.payload.token,
         user: {

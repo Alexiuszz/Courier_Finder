@@ -111,9 +111,9 @@ export const fetchUser = () => {
         if (res._id !== null && res._id !== undefined) {
           dispatch(fetchUserSuccess(res));
         } 
-        // else if (!res.sess) {
-        //   dispatch(signout());
-        // }
+        else if (!res.sess) {
+          dispatch(signout());
+        }
         else {
           return dispatch({
             type: actions.FETCH_USER_FAILURE,
