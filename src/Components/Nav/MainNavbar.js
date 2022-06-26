@@ -32,7 +32,7 @@ const MainNavbar = ({ acctDropDown, acctMenuDrop }) => {
           {/* <img className="topDesign" src={topDesign} alt="" /> */}
           <Link className="logoTitle" to={"/"}>
             <img className="navIcon" src={Logo} alt="Logo" />
-            <p>courierfinder</p> 
+            <p>Emissar</p> 
           </Link>
           <div className="navLinkList group1">
             <Link className="navLink" to={"/"}>

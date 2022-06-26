@@ -63,10 +63,10 @@ export default function Footer() {
       <div className="footerBottom">
         <div className="footerBtmItems">
           <h1>
-            Courier Finder
+            Emissar
             <img src={Logo} alt="Logo" />
           </h1>
-          <p>MarketPlace Copyright &copy; 2021. All Rights Reserved.</p>
+          <p>Emissar Copyright &copy; 2021. All Rights Reserved.</p>
         </div>
       </div>
     </div>

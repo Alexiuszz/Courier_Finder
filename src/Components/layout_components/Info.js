@@ -11,7 +11,7 @@ export default function Info() {
     <img className="infoBG" src={BG} alt="BG" />
       <div className="infoContent">
         <div className="banner">
-          <p>Courier Finder </p>
+          <p>Emissar</p>
           <img src={Logo} alt="Logo" />
         </div>
         <p className="details">
