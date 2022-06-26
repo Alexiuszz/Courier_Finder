@@ -1,5 +1,5 @@
 .profileSetupWrapper {
-    width: 80%;
+    width: 75%;
     margin: 0 auto;
     padding: 50px;
     border: 3px solid #a19d9d8e;
@@ -39,6 +39,11 @@
     z-index: -1;
 }
 
+.logoSelect input,
+.logoSelect label {
+    margin: 40px auto 0 auto;
+}
+
 .inputFile+label {
     display: flex;
     align-items: center;
@@ -49,7 +54,6 @@
     border: 1px solid #d1d1d1;
     border-radius: 8px;
     cursor: pointer;
-    margin-top: 50px;
 }
 
 .inputFile:focus+label,

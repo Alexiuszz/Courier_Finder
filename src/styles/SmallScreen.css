@@ -80,6 +80,19 @@
     .signupTitle {
         width: 95vw;
     }
+    /* Profile Setup */
+    .profileSetup {
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .logoSelect {
+        margin-bottom: 30px;
+    }
+    .logoSelect input,
+    .logoSelect label {
+        margin: 20px auto;
+    }
 }
 
 @media screen and (max-width: 900px) {
