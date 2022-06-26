@@ -53,9 +53,11 @@ const AppReducer = (state = initialState, action) => {
       return {
         ...state,
         busy: false,
-        user: {},
         error: action.payload,
         fetchUserError: true,
+        user: {
+          ...state.user,
+        },
       };
     case actions.SIGNUP_ERROR:
       return {

@@ -1,7 +1,7 @@
 import * as actions from "./userTypes";
 import { callApiEndpoint } from "../../api/ApiCall";
 import { GetCookie } from "../../auth_setup/Cookie";
-import * as keys from '../../api/config';
+import * as keys from "../../api/config";
 
 //login thunk
 export const loginAction = (userData) => {
@@ -54,7 +54,9 @@ export const signupAction = (userData) => {
           return;
         } else {
           dispatch({ type: actions.SIGNUP_SUCCESSFUL, payload: res });
-          window.location.href = `${process.env.REACT_APP_BASE_URL || keys.REACT_APP_BASE_URL}/#/profile`;
+          window.location.href = `${
+            process.env.REACT_APP_BASE_URL || keys.REACT_APP_BASE_URL
+          }/#/profile`;
         }
       },
       (error) => {
@@ -102,12 +104,16 @@ export const fetchUser = () => {
     dispatch(fetchUserRequest());
     return callApiEndpoint(
       "courier/getCourier",
-      "get",
-      {},
+      "post",
+      { token: getState().user.token },
       (res) => {
         if (res._id !== null && res._id !== undefined) {
           dispatch(fetchUserSuccess(res));
-        } else {
+        } 
+        // else if (!res.sess) {
+        //   dispatch(signout());
+        // }
+        else {
           return dispatch({
             type: actions.FETCH_USER_FAILURE,
             payload: "Invalid Request!",

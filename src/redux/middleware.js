@@ -25,14 +25,14 @@ export const loggedIn =
   };
 
 export const loggedOut =
-  ({ dispatch }) =>
+  ({getState, dispatch }) =>
   (next) =>
   (action) => {
     if (action.type === actions.LOGGED_OUT) {
       callApiEndpoint(
         "auth/signout",
-        "get",
-        {},
+        "post",
+        {token: getState().user.token},
         (res) => {
           // Clear token cookie
           SetCookie("auth-token", "", "/", null);
