@@ -14,6 +14,7 @@ export const loginAction = (userData) => {
       (response) => {
         dispatch({ type: actions.LOGIN_REQUEST, payload: false });
         const res = { ...response._doc, token: response.token };
+        console.log(res);
         if (res._id !== null && res._id !== undefined) {
           dispatch({ type: actions.LOGIN_SUCCESSFUL, payload: res });
 
@@ -105,7 +106,7 @@ export const fetchUser = () => {
     return callApiEndpoint(
       "courier/getCourier",
       "post",
-      { token: getState().user.token },
+      { token: getState().user.token, id: getState().user.user._id},
       (res) => {
         if (res._id !== null && res._id !== undefined) {
           dispatch(fetchUserSuccess(res));

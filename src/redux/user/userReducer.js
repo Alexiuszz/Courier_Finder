@@ -101,6 +101,7 @@ const AppReducer = (state = initialState, action) => {
         user: {
           email: action.payload.email,
           createdProfile: action.payload.createdProfile,
+          _id: action.payload._id
         },
       };
 
