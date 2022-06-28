@@ -50,7 +50,7 @@ function ProfileSetup() {
   const handleSkip = (e) => {
     e.preventDefault();
     dispatch({ type: SKIP_PROFILE });
-    window.location.href = `${process.env.REACT_APP_BASE_URL || keys.REACT_APP_BASE_URL}/#/profile`;
+    window.location.href = `#/profile`;
   };
 
   let location = useLocation();

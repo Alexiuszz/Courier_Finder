@@ -21,7 +21,7 @@ function Loader({ color, loading }) {
           height: "80vh",
           width: "80vw",
           background: "none",
-          marginLeft: '40vw'
+          marginLeft: '50vw'
         }}
       >
         <BeatLoader

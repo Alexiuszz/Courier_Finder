@@ -73,7 +73,7 @@ export const submitProfile = (profile) => {
     return callApiEndpoint(
       "courier/set-profile",
       "post",
-      profile,
+      {...profile, token: getState().user.token},
       (res) => {
         res
           ? dispatch({ type: actions.PROFILE_SUBMITTED, payload: res })
