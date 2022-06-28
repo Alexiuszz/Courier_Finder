@@ -12,7 +12,6 @@ import { submitProfile } from "../redux/user/userActions";
 import { SKIP_PROFILE } from "../redux/user/userTypes";
 import { Navigate, useLocation } from "react-router-dom";
 
-import * as keys from "../api/config";
 
 function ProfileSetup() {
   const [logo, setLogo] = React.useState(null);
