@@ -32,7 +32,7 @@
     }
     .banner img {
         height: 60px;
-        margin-left: 90px;
+        margin-left: 100px;
     }
     .cardContainer {
         height: auto;
@@ -93,6 +93,28 @@
     .logoSelect label {
         margin: 20px auto;
     }
+    /* Account */
+    .acctIndex {
+        display: none;
+    }
+    .hide {
+        display: none;
+    }
+    .acctContainer {
+        display: block;
+        width: 100%;
+    }
+    div.acctContainer .acctSideBar,
+    div.acctContainer .acctWrapper {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .addressContainer {
+        width: 107px;
+    }
 }
 
 @media screen and (max-width: 900px) {
@@ -145,6 +167,9 @@
         display: none;
     }
     .dropDownList.dropDownList.dropOpen {
+        display: none;
+    }
+    .backArrowContainer {
         display: none;
     }
 }

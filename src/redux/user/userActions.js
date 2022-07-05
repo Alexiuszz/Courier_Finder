@@ -57,7 +57,7 @@ export const signupAction = (userData) => {
           dispatch({ type: actions.SIGNUP_SUCCESSFUL, payload: res });
           window.location.href = `${
             process.env.REACT_APP_BASE_URL || keys.REACT_APP_BASE_URL
-          }/#/profile`;
+          }/#/signin`;
         }
       },
       (error) => {
@@ -76,7 +76,7 @@ export const submitProfile = (profile) => {
       {...profile, token: getState().user.token},
       (res) => {
         res
-          ? dispatch({ type: actions.PROFILE_SUBMITTED, payload: res })
+          ? dispatch({ type: actions.PROFILE_SUBMITTED, payload: {createdProfile: res, logo: profile.logo, description: profile.description } })
           : dispatch({
               type: actions.SUBMITTING_PROFILE_ERROR,
               payload: "Error Submitting Profile",

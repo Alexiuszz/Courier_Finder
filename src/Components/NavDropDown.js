@@ -23,7 +23,7 @@ function NavDropDown({ onClick = f=>f, className = "" }) {
       {!loggedIn ? (
         <Link to={"/signin"}>Sign in</Link>
       ) : (
-        <Link to={"/profile"}>Profile</Link>
+        <Link to={"/account"}>Profile</Link>
       )}
       <Link to={"/contact"} className="navLink">
         <FontAwesomeIcon icon={solid("phone")} />

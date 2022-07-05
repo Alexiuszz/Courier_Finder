@@ -19,9 +19,10 @@ function Loader({ color, loading }) {
       <DialogContent
         style={{
           height: "80vh",
-          width: "80vw",
           background: "none",
-          marginLeft: '50vw'
+          marginLeft: "auto",
+          marginRight: "auto",
+          textAlign: "center"
         }}
       >
         <BeatLoader

@@ -3,6 +3,8 @@ import { Signup } from "./Auth-pages/Signup";
 import noLogo from "../graphics/User_box_fill.svg";
 import "../styles/ProfileSetup.css";
 import imgSelect from "../Icons/Img_box_fill.svg";
+
+import FileBase64 from "react-file-base64";
 import {
   IconButton,
   TextArea,
@@ -12,22 +14,29 @@ import { submitProfile } from "../redux/user/userActions";
 import { SKIP_PROFILE } from "../redux/user/userTypes";
 import { Navigate, useLocation } from "react-router-dom";
 
-
 function ProfileSetup() {
   const [logo, setLogo] = React.useState(null);
-  const [fileName, setFileName] = React.useState("Choose Logo");
+  // const [fileName, setFileName] = React.useState("Choose Logo");
+  // const [file, setFile] = React.useState(null);
   const [description, setDescription] = React.useState("");
 
   const dispatch = useDispatch();
   const email = useSelector((state) => state.user.user.email);
   const createdProfile = useSelector((state) => state.user.user.createdProfile);
 
-  const handlePictureSelected = (e) => {
-    var picture = e.target.files[0];
-    if (picture !== undefined) {
-      setFileName(picture.name);
-      var src = URL.createObjectURL(picture);
-      setLogo(src);
+  // const handlePictureSelected = (e) => {
+  //   setFile(e.target.files[0]);
+  //   if (file !== null) {
+  //     setFileName(file.name);
+
+  //     var src = URL.createObjectURL(file);
+  //     console.log(src);
+  //     setLogo(src);
+  //   }
+  // };
+  const handlePictureSelected = (img) => {
+    if (img !== null) {
+      setLogo(img);
     }
   };
 
@@ -39,9 +48,9 @@ function ProfileSetup() {
     e.preventDefault();
 
     let profile = {
-      logo,
+      logo: logo,
       email: email,
-      description: description
+      description: description,
     };
     dispatch(submitProfile(profile));
   };
@@ -49,12 +58,12 @@ function ProfileSetup() {
   const handleSkip = (e) => {
     e.preventDefault();
     dispatch({ type: SKIP_PROFILE });
-    window.location.href = `#/profile`;
+    window.location.href = `#/account`;
   };
 
   let location = useLocation();
   if (createdProfile) {
-    return <Navigate to="/profile" state={{ from: location }} />;
+    return <Navigate to="/account" state={{ from: location }} />;
   }
   return (
     <Signup>
@@ -64,7 +73,7 @@ function ProfileSetup() {
           <div className="logoSelect">
             <div className="logo">
               <img
-                src={logo !== undefined && logo !==null ? logo : noLogo}
+                src={logo !== undefined && logo !== null ? logo : noLogo}
                 alt="logo"
                 className="logoImg"
               />
@@ -77,7 +86,11 @@ function ProfileSetup() {
               className="inputFile"
             />
             <label htmlFor="file">
-              {fileName}
+              <FileBase64
+                type="file"
+                multiple={false}
+                onDone={({ base64 }) => handlePictureSelected(base64)}
+              />
               <img src={imgSelect} alt="ilogo select" />
             </label>
           </div>

@@ -46,7 +46,7 @@ function Login() {
 
   let location = useLocation();
   if (token) {
-    return <Navigate to="/profile" state={{ from: location }} />;
+    return <Navigate to="/account" state={{ from: location }} />;
   }
   return (
     <AuthWrapper>

@@ -104,8 +104,13 @@ const AppReducer = (state = initialState, action) => {
         token: action.payload.token,
         user: {
           email: action.payload.email,
+          name: action.payload.name,
+          phoneNumber: action.payload.phoneNo,
+          locations: action.payload.locations,
+          description: action.payload.description,
           createdProfile: action.payload.createdProfile,
-          _id: action.payload._id
+          _id: action.payload._id,
+          logo: action.payload.logo
         },
       };
 
@@ -120,7 +125,9 @@ const AppReducer = (state = initialState, action) => {
         busy: false,
         user: {
           ...state.user,
-          createdProfile: action.payload,
+          createdProfile: action.payload.createdProfile,
+          logo: action.payload.logo,
+          description: action.payload.description
         },
       };
     case actions.SUBMITTING_PROFILE_ERROR:
@@ -181,7 +188,7 @@ const AppReducer = (state = initialState, action) => {
 const persistConfig = {
   key: "user",
   storage: storage,
-  blacklist: ["token", "loggedIn"],
+  blacklist: ["token", "loggedIn", "busy"],
 };
 
 export default persistReducer(persistConfig, AppReducer);
