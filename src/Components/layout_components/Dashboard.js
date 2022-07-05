@@ -37,8 +37,7 @@ function Dashboard() {
 
               </div>
               <p>
-                {user.description ||
-                  "No 1 courier service in the federal capital. Rquest here or dial any of our numbers to get you goods delivered super fast any where in nigeria. REQUEST NOW!"}
+              Description: {user.description ||" No 1 courier service in the federal capital. Rquest here or dial any of our numbers to get you goods delivered super fast any where in nigeria. REQUEST NOW!"}
               </p>
             </div>
           </div>
