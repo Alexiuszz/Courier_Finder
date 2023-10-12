@@ -7,15 +7,13 @@ let token = GetCookie("auth-token");
 
 const initialState = {
   busy: false,
-
   acctMenuDrop: false,
-
   user: {},
   skipProfile: false,
   error: "",
   token: token,
   // tokenExpirationTime: null,
-
+  
   loggingIn: false,
   loggedIn: token && token.length > 0,
   loginError: false,

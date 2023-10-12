@@ -28,6 +28,8 @@
     height: 40px;
     margin-left: 2.5vw;
     margin-right: 5px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 #00000033, 0 6px 20px 0 #00000030;
 }
 
 .logoTitle {
